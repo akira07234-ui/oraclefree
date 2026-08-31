@@ -1,0 +1,118 @@
+/* almanac-terms.js — 黄历术语五语翻译与解释字典 */
+window.ALM_TERMS = {
+  en: {
+    terms: {
+      "嫁娶":"Marry — wedding ceremonies","祭祀":"Worship — ancestral offerings & rites","祈福":"Blessing — pray for good fortune","求嗣":"Heirs — pray for children",
+      "开光":"Consecrate — bless a new statue or talisman","出行":"Travel — journeys and trips","拆卸":"Demolish — tear down structures","修造":"Renovate — repair & build",
+      "动土":"Break ground — start construction","起基":"Lay foundation","上梁":"Raise beam — key construction milestone","盖屋":"Roof a house",
+      "入殓":"Encoffin — place body in coffin","安葬":"Bury — funeral burial","启钻":"Exhume — move remains","移柩":"Move coffin",
+      "伐木":"Fell trees","栽种":"Plant — sowing & planting","纳畜":"Buy livestock","安机械":"Install machinery",
+      "会亲友":"Meet friends & family","进人口":"Welcome new members","修饰垣墙":"Repair walls","平治道涂":"Road works",
+      "求医疗病":"Seek healing — medical treatment","结网":"Weave nets","取渔":"Fish","畋猎":"Hunt",
+      "补垣":"Patch walls","塞穴":"Seal holes","成服":"Wear mourning clothes","除服":"Remove mourning clothes","谢土":"Thank the earth — ritual after building",
+      "立碑":"Erect a monument","开市":"Open business — grand opening, trading","入宅":"Move into a new home","安床":"Set the bed — for marriage or moving",
+      "移徙":"Relocate — moving house","作灶":"Build a stove","扫舍":"Sweep the house — spring cleaning","造仓":"Build a storehouse",
+      "教牛马":"Train livestock","治病":"Treat illness","破屋":"Demolish a house","坏垣":"Tear down a wall",
+      "造桥":"Build a bridge","筑堤":"Build a dike","掘井":"Dig a well","置产":"Buy property","立券":"Sign contracts",
+      "交易":"Trade — buy & sell","纳财":"Receive money — collect debts & payments","开池":"Dig a pond","放水":"Release water",
+      "造庙":"Build a temple","装修":"Decorate — interior fitting","定磉":"Set foundation stones","合帐":"Set up bed curtains",
+      "裁衣":"Tailor clothes","经络":"Spin & weave","安碓硙":"Install millstone","乘船":"Board a ship","渡水":"Cross water",
+      "上表章":"Submit petitions","袭官受封":"Take office","赴任":"Assume a post","习艺":"Learn a craft","入学":"Start school",
+      "剃头":"Shave head (traditional rite)","扫舍宇":"Clean the house","求医":"See a doctor","疗病":"Treat illness",
+      "馀事勿取":"Avoid other matters — an inauspicious day for most activities","诸事不宜":"Unsuitable for all matters"
+    },
+    clashNote: "The 'Clash' tells you which zodiac animal is in direct opposition to today's earthly branch. People born under that sign take extra care today. The 'Sha direction' is the compass direction of today's disruptive energy — traditionally avoided for major activities.",
+    luckyNote: "Lucky stars (吉神) are favorable celestial influences that bless the day for certain activities. Malefic stars (凶煞) are disruptive influences that caution against certain actions.",
+    yiNote: "『宜』means the day's energy supports this activity — it will go smoothly.",
+    jiNote: "『忌』means the day's energy opposes this activity — doing it today risks obstacles.",
+    daySummary: "Day pillar {gz} ({animal} year). The clash animal is {chong} — if that's your sign, keep a low profile. Lucky stars today: {lucky}."
+  },
+  zh: {
+    clashNote: "「冲煞」标示当日地支与哪个生肖正面对冲：属该生肖者今日行事多留意。「煞方」为当日不利方位，重大活动宜避。",
+    luckyNote: "吉神为当日有利之星辰，护佑特定事宜顺利；凶煞为不利之星辰，提醒避开相关之事。",
+    yiNote: "「宜」表示当日气场支持此项活动，做起来顺利。",
+    jiNote: "「忌」表示当日气场不利此项活动，勉强去做恐生障碍。",
+    daySummary: "日干支 {gz}（{animal}年）。冲{chong}——属{chongAnimal}者今日宜低调。吉神：{lucky}。"
+  },
+  es: {
+    terms: {
+      "嫁娶":"Casarse — ceremonias de boda","祭祀":"Adorar — ofrendas a los antepasados","祈福":"Bendecir — rezar por buena fortuna","求嗣":"Herederos — rezar por hijos",
+      "开光":"Consagrar — bendecir una estatua o talismán","出行":"Viajar — viajes y desplazamientos","拆卸":"Demoler — derribar estructuras","修造":"Renovar — reparar y construir",
+      "动土":"Romper tierra — iniciar construcción","起基":"Colocar cimientos","上梁":"Levantar viga — hito de construcción","盖屋":"Tetear la casa",
+      "入殓":"Encofinar — colocar el cuerpo en el ataúd","安葬":"Enterrar — funeral","启钻":"Exhumar — trasladar restos","移柩":"Mover el ataúd",
+      "伐木":"Talar árboles","栽种":"Plantar — siembra y cultivo","纳畜":"Comprar ganado","安机械":"Instalar maquinaria",
+      "会亲友":"Ver amigos y familia","进人口":"Dar la bienvenida a nuevos miembros","修饰垣墙":"Reparar muros","平治道涂":"Obras viales",
+      "求医疗病":"Buscar sanación — tratamiento médico","结网":"Tejer redes","取渔":"Pescar","畋猎":"Cazar",
+      "补垣":"Rebenar muros","塞穴":"Sellad agujeros","成服":"Vestir luto","除服":"Quitar el luto","谢土":"Agradecer a la tierra — rito tras construir",
+      "立碑":"Erigir un monumento","开市":"Abrir negocio — inauguración","入宅":"Mudarse a una casa nueva","安床":"Colocar la cama — para boda o mudanza",
+      "移徙":"Reubicarse — mudanza","作灶":"Construir una estufa","扫舍":"Barrer la casa — limpieza","造仓":"Construir un almacén",
+      "教牛马":"Adiestrar ganado","治病":"Tratar enfermedad","破屋":"Demoler una casa","坏垣":"Derribar un muro",
+      "造桥":"Construir un puente","筑堤":"Construir un dique","掘井":"Cavar un pozo","置产":"Comprar propiedad","立券":"Firmar contratos",
+      "交易":"Comerciar — comprar y vender","纳财":"Recibir dinero — cobrar deudas","开池":"Cavar un estanque","放水":"Soltar agua",
+      "造庙":"Construir un templo","装修":"Decorar interior","定磉":"Colocar piedras de cimentación","合帐":"Colocar cortinas de cama",
+      "裁衣":"Sastrear ropa","经络":"Hilar y tejer","乘船":"Embarcar","渡水":"Cruzar el agua",
+      "上表章":"Presentar peticiones","赴任":"Asumir un cargo","入学":"Comenzar estudios",
+      "剃头":"Raparse (rito tradicional)","扫舍宇":"Limpiar la casa","求医":"Ver al médico","疗病":"Tratar enfermedad",
+      "馀事勿取":"Evitar otros asuntos — día desfavorable","诸事不宜":"No apto para ningún asunto"
+    },
+    clashNote: "El 'Choque' indica qué animal del zodiaco se opone directamente a la rama terrestre de hoy. Los nacidos bajo ese signo deben ser cautos. La 'dirección Sha' es la dirección de energía disruptiva.",
+    luckyNote: "Las estrellas de la suerte (吉神) bendicen ciertas actividades. Las estrellas maléficas (凶煞) advierten contra otras.",
+    yiNote: "『宜』significa que la energía del día apoya esta actividad — saldrá bien.",
+    jiNote: "『忌』significa que la energía del día se opone — hacerla hoy conlleva obstáculos.",
+    daySummary: "Pilar del día {gz} (año {animal}). El choque es {chong} — si es tu signo, mantén perfil bajo. Estrellas de la suerte: {lucky}."
+  },
+  ar: {
+    terms: {
+      "嫁娶":"الزواج — حفلات الزفاف","祭祀":"العبادة — قرابين الأجداد","祈福":"البركة — الدعاء للحظ الجيد","求嗣":"النسل — الدعاء للأطفال",
+      "开光":"التكريس — تبريك تمثال أو تعويذة","出行":"السفر — رحلات وتنقلات","拆卸":"الهدم — إزالة المباني","修造":"الترميم — إصلاح وبناء",
+      "动土":"كسر الأرض — بدء البناء","起基":"وضع الأسس","上梁":"رفع العارضة — مرحلة بناء رئيسية","盖屋":"تسقيف المنزل",
+      "入殓":"التحنيط — وضع الجثمان في النعش","安葬":"الدفن — جنازة","启钻":"نقل الرفاة","移柩":"تحريك النعش",
+      "伐木":"قطع الأشجار","栽种":"الزرع — زراعة وغرس","纳畜":"شراء المواشي","安机械":"تركيب الآلات",
+      "会亲友":"مقابلة الأصدقاء والعائلة","进人口":"الترحيب بأعضاء جدد","修饰垣墙":"إصلاح الجدران","平治道涂":"أعمال الطرق",
+      "求医疗病":"طلب الشفاء — علاج طبي","结网":"نسج الشباك","取渔":"الصيد","畋猎":"القنص",
+      "补垣":"ترقيع الجدران","塞穴":"سد الحفريات","成服":"ارتداء الثياب الحزينة","除服":"إزالة الحداد","谢土":"شكر الأرض — طقس بعد البناء",
+      "立碑":"إقامة نصب تذكاري","开市":"افتتاح عمل — حفل افتتاحي","入宅":"الانتقال لمنزل جديد","安床":"ترتيب السرير — للزواج أو الانتقال",
+      "移徙":"الانتقال — تغيير المنزل","作灶":"بناء موقد","扫舍":"كنس المنزل","造仓":"بناء مخزن",
+      "教牛马":"ترويض المواشي","治病":"علاج مرض","破屋":"هدم منزل","坏垣":"إزالة جدار",
+      "造桥":"بناء جسر","筑堤":"بناء سد","掘井":"حفر بئر","置产":"شراء عقار","立券":"توقيع عقود",
+      "交易":"التجارة — بيع وشراء","纳财":"استلام المال — تحصيل الديون","开池":"حفر بركة","放水":"إطلاق الماء",
+      "造庙":"بناء معبد","装修":"الديكور الداخلي","定磉":"وضع أحجار الأساس","合帐":"تركيب ستائر السرير",
+      "裁衣":"خياطة الملابس","经络":"غزل ونسيج","乘船":"ركوب السفينة","渡水":"عبور الماء",
+      "赴任":"تولي منصب","入学":"بدء الدراسة",
+      "剃头":"الحلاقة (طقس تقليدي)","扫舍宇":"تنظيف المنزل","求医":"زيارة الطبيب","疗病":"علاج مرض",
+      "馀事勿取":"تجنب الأمور الأخرى — يوم غير مناسب","诸事不宜":"غير مناسب لأي نشاط"
+    },
+    clashNote: "«التصادم» يخبرك بأي حيوان من الأبراج الصينية يعاكس فرع اليوم الأرضي. المولودون تحت ذلك البرج يحتاجون إلى الحذر اليوم. «اتجاه شا» هو اتجاه الطاقة المزعجة.",
+    luckyNote: "النجوم المحظوظة (吉神) هي تأثيرات سماوية مواتية. النجوم المشؤومة (凶煞) تأثيرات مزعجة تحذر من أنشطة معينة.",
+    yiNote: "『宜』تعني أن طاقة اليوم تدعم هذا النشاط — سيسير بسلاسة.",
+    jiNote: "『忌』تعني أن طاقة اليوم تعارض هذا النشاط — القيام به اليوم قد يواجه عوائق.",
+    daySummary: "عمود اليوم {gz} (سنة {animal}). التصادم مع {chong} — إذا كان برجك، حافظ على حسابك. النجوم المحظوظة: {lucky}."
+  },
+  ja: {
+    terms: {
+      "嫁娶":"婚姻 — 結婚式","祭祀":"祭祀 — 先祖への供物と儀式","祈福":"祈福 — 幸運を祈る","求嗣":"子嗣 — 子宝を祈る",
+      "开光":"開眼 — 新しい像やお守りの開眼式","出行":"出行 — 旅行や外出","拆卸":"解体 — 建物の取り壊し","修造":"修造 — 補修と建設",
+      "动土":"地鎮 — 工事着工","起基":"基礎工事","上梁":"上棟 — 建設の要の儀式","盖屋":"屋根をふく",
+      "入殓":"納棺 — 遺体を棺に納める","安葬":"埋葬 — 葬儀","启钻":"改葬 — 遺骨の移動","移柩":"棺の移動",
+      "伐木":"伐採","栽种":"植林 — 種まきと植樹","纳畜":"家畜購入","安机械":"機械設置",
+      "会亲友":"親友と会う","进人口":"新しい仲間を迎える","修饰垣墙":"塀の補修","平治道涂":"道路工事",
+      "求医疗病":"医療 — 治療を受ける","结网":"網を編む","取渔":"漁労","畋猎":"狩猟",
+      "补垣":"塀の補修","塞穴":"穴を塞ぐ","成服":"喪服を着る","除服":"喪服を脱ぐ","谢土":"地鎮祭後の感謝儀式",
+      "立碑":"石碑建立","开市":"開店 — 商売開始・取引開始","入宅":"新居入居","安床":"寝具の設置 — 結婚や引越の際",
+      "移徙":"引っ越し","作灶":"かまど作り","扫舍":"家の掃除","造仓":"倉庫建設",
+      "教牛马":"家畜の調教","治病":"病気治療","破屋":"家屋解体","坏垣":"塀の撤去",
+      "造桥":"橋の建設","筑堤":"堤防建設","掘井":"井戸を掘る","置产":"不動産購入","立券":"契約締結",
+      "交易":"売買 — 商取引","纳财":"金銭受領 — 債権回収","开池":"池を掘る","放水":"放水",
+      "造庙":"寺院建設","装修":"内装","定磉":"礎石設置","合帐":"寝具カーテン設置",
+      "裁衣":"衣服裁縫","乘船":"乗船","渡水":"渡河",
+      "赴任":"着任","入学":"入学式",
+      "剃头":"髪を剃る（伝統儀式）","扫舍宇":"家の大掃除","求医":"医師の診察","疗病":"病気治療",
+      "馀事勿取":"他の事は避けるべし — 不向きな日","诸事不宜":"万事に不向き"
+    },
+    clashNote: "「沖煞」は今日の地支と正面对立する生肖を示します。その生肖の方は今日は慎重に。方角の「煞」は今日の不吉な方角です。",
+    luckyNote: "吉神はその日の特定の活動を守護する良い星。凶神は注意を促す悪い星です。",
+    yiNote: "「宜」は今日の気energyがこの活動をサポートすることを意味します。",
+    jiNote: "「忌」は今日のenergyがこの活動に反することを意味します。",
+    daySummary: "日干支 {gz}（{animal}年）。沖は{chong} — その生肖の方は今日は控えめに。吉神：{lucky}。"
+  }
+};
