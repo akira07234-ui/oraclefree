@@ -180,7 +180,7 @@ var today = new Date().toISOString().slice(0, 10);
 var urls = Object.keys(reg).filter(function (p) { return p !== "/404.html"; }).map(function (enPath) {
   var alts = tpl.langPaths(enPath).map(function (x) {
     return '    <xhtml:link rel="alternate" hreflang="' + x.code + '" href="' + tpl.SITE_URL + x.path + '"/>\n';
-  }).join("");
+  }).join("") + '    <xhtml:link rel="alternate" hreflang="x-default" href="' + tpl.SITE_URL + (enPath === "/" ? "/" : enPath) + '"/>\n';
   var locs = tpl.langPaths(enPath).map(function (x) {
     var r = reg[enPath];
     return "  <url>\n    <loc>" + tpl.SITE_URL + x.path + "</loc>\n" +

@@ -23,6 +23,18 @@ function langPaths(enPath) {
   return LANGS.map(function (L) { return { code: L.code, path: L.prefix + (enPath === "/" ? "/" : enPath) }; });
 }
 
+function fitTitle(t) {
+  t = String(t || "").trim();
+  if (t.length <= 62) return t;
+  var brand = " | BaziOracle";
+  var base = t.replace(/\s*\|\s*BaziOracle\s*$/, "");
+  if ((base + brand).length <= 62) return base + brand;
+  var cut = base.slice(0, 58);
+  var sp = cut.lastIndexOf(" ");
+  if (sp > 30) cut = cut.slice(0, sp);
+  return cut.replace(/[\s—–\-,,·]+$/, "") + "…";
+}
+
 function head(o) {
   var L = langByCode(o.code);
   var url = SITE_URL + L.prefix + (o.enPath === "/" ? "/" : o.enPath);
@@ -31,7 +43,10 @@ function head(o) {
   var alts = langPaths(o.enPath).map(function (x) {
     return '<link rel="alternate" hreflang="' + x.code + '" href="' + SITE_URL + x.path + '">\n';
   }).join("");
-  var ld = o.jsonLd || null;
+  var lds = o.jsonLd ? (Array.isArray(o.jsonLd) ? o.jsonLd : [o.jsonLd]) : [];
+  var ldHtml = lds.filter(Boolean).map(function (ld) {
+    return '<script type="application/ld+json">' + JSON.stringify(ld) + "</script>\n";
+  }).join("");
   return '<!DOCTYPE html>\n<html lang="' + L.htmlLang + '" dir="' + L.dir + '">\n<head>\n' +
     '<meta charset="utf-8">\n<meta name="viewport" content="width=device-width,initial-scale=1">\n' +
     "<title>" + esc(o.title) + "</title>\n" +
@@ -44,7 +59,7 @@ function head(o) {
     '<link rel="preconnect" href="https://fonts.googleapis.com">\n' +
     '<link href="https://fonts.googleapis.com/css2?' + fonts + '&display=swap" rel="stylesheet">\n' +
     '<link rel="stylesheet" href="/assets/css/style.css' + VER + '">\n' +
-    (ld ? '<script type="application/ld+json">' + JSON.stringify(ld) + "</script>\n" : "") +
+    ldHtml +
     "</head>\n" +
     '<body data-prefix="' + (o.prefix || "") + '"' + (L.dir === "rtl" ? ' class="rtl"' : "") + ">\n";
 }
@@ -102,12 +117,35 @@ function S(list) {
 }
 
 function page(pack, o) {
+  o.title = fitTitle(o.title);
   var body = header(pack, o.enPath);
   if (o.crumbs) body += breadcrumb(o.crumbs);
   body += o.body;
   body += footer(pack);
   body += (o.scripts || "") + '\n<script src="/assets/js/main.js' + VER + '"></script>\n</body>\n</html>';
-  return head({ code: pack.code, enPath: o.enPath, title: o.title, desc: o.desc, jsonLd: o.jsonLd, prefix: pack.prefix }) + body;
+  var lds = [];
+  if (o.crumbs && o.crumbs.length > 1) lds.push(crumbLd(o.crumbs));
+  var ep = o.enPath || "/";
+  var unesc = String(o.title || "").replace(/&amp;/g, "&");
+  var url = SITE_URL + pack.prefix + (ep === "/" ? "/" : ep);
+  if (/^\/(bazi|ziwei|jiaobei|kau-cim|zodiac|iching|almanac|five-elements|dreams)\/$/.test(ep)) {
+    lds.push({
+      "@context": "https://schema.org", "@type": "WebApplication",
+      "name": unesc, "url": url, "applicationCategory": "UtilityApplication", "operatingSystem": "Any",
+      "inLanguage": langByCode(pack.code).htmlLang,
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    });
+  } else if (!o.jsonLd && /^\/(learn\/[^/]+|iching\/hexagram-\d+|kau-cim\/sign-\d+|zodiac\/[^/]+|about|privacy)\/?$/.test(ep)) {
+    lds.push({
+      "@context": "https://schema.org", "@type": "Article",
+      "headline": unesc, "description": o.desc || "", "mainEntityOfPage": url,
+      "inLanguage": langByCode(pack.code).htmlLang,
+      "author": { "@type": "Organization", "name": "BaziOracle" },
+      "publisher": { "@type": "Organization", "name": "BaziOracle" }
+    });
+  }
+  if (o.jsonLd) lds = lds.concat(Array.isArray(o.jsonLd) ? o.jsonLd : [o.jsonLd]);
+  return head({ code: pack.code, enPath: o.enPath, title: o.title, desc: o.desc, jsonLd: lds, prefix: pack.prefix }) + body;
 }
 
 module.exports = { SITE_URL: SITE_URL, LANGS: LANGS, esc: esc, page: page, crumbLd: crumbLd, S: S, langPaths: langPaths, langByCode: langByCode, VER: VER, jbStage: JB_STAGE };

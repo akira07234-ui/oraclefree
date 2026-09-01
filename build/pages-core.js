@@ -104,7 +104,7 @@ function homeEn() {
   '<section class="block container"><div class="sec-head"><div class="kicker">One site, every tool</div><h2>Explore the Full Chinese Oracle</h2></div>' +
   '<div class="grid g4">' + tools + "</div></section>";
 
-  return { title: "BaZi Marriage Compatibility — Zodiac, Elements, Palace & Luck Sync | BaziOracle",
+  return { title: "Free BaZi Marriage Compatibility Calculator | BaziOracle",
     desc: "Free BaZi marriage compatibility: enter both birth dates for zodiac harmony, five-element balance, spouse palace and luck-cycle sync — scored by the classical method with remedies.",
     body: body, scripts: S(["/assets/vendor/lunar.min.js", "/assets/js/bazi-engine.js", "/assets/js/hunyin.js"]), jsonLd: [ld] };
 }
