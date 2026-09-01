@@ -13,7 +13,7 @@ var ARTICLES = {
     "<h2>El maestro del día</h2><p>El tallo de tu pilar del día es el «tú» de la carta. La metodología Zi Ping pregunta: ¿qué tan fuerte es (apoyado por su elemento y el que lo alimenta)? Los elementos que fortalecen a un maestro débil —o temperan a uno fuerte— son los elementos favorables (喜用神).</p>" +
     "<h2>Los diez dioses y los pilares de suerte</h2><p>Cada tallo se relaciona con el maestro como uno de diez dioses: Amigo, Rival, Talento, Rebelde, Ganancia, Riqueza, Guerrero, Oficial, Místico y Erudito. Además, la carta asigna pilares de suerte de diez años (大运) que cambian el clima elemental de cada década.</p>" +
     "<h2>Pruébalo</h2><p>Calcula tu carta con corrección de hora solar en nuestra <a href='/es/'>calculadora BaZi gratis</a> y explora tus <a href='/es/five-elements/'>cinco elementos</a>.</p>" +
-    '<p class="disclaimer">El BaZi es un arte interpretativo tradicional, presentado con fines culturales y de entretenimiento.</p>'),
+    '<p class="disclaimer">El BaZi es un arte interpretativo tradicional.</p>'),
   "true-solar-time": art("Hora solar verdadera", "La hora del reloj puede mover tu pilar de la hora: así se corrige.",
     "Hora Solar Verdadera: tu pilar de la hora podría estar mal | BaziOracle",
     "Cómo la longitud y la ecuación del tiempo desplazan el pilar de la hora del BaZi, y cómo nuestra calculadora lo corrige.",
@@ -22,7 +22,7 @@ var ARTICLES = {
     "<h2>Dos correcciones</h2><p>Primero la <strong>longitud</strong>: el sol tarda cuatro minutos por grado, así que un nacimiento en Urumqi es casi dos horas «más temprano» en tiempo solar. Segundo, la <strong>ecuación del tiempo</strong>: la órbita inclinada de la Tierra desplaza el mediodía solar hasta unos 16 minutos al año.</p>" +
     "<h2>Por qué importa</h2><p>Las doce ramas de dos horas dividen el día solar exactamente en doce. Una corrección de 30-60 minutos suele cruzar el borde de una rama: cambia el pilar de la hora y a veces la fuerza de toda la carta.</p>" +
     "<p>Entra la longitud de tu ciudad (o solo tu zona horaria) y marca la casilla de hora solar verdadera en la <a href='/es/'>calculadora</a>: aplicamos ambas correcciones y mostramos los minutos ajustados.</p>" +
-    '<p class="disclaimer">Con fines culturales y de entretenimiento. Ante la duda, el recuerdo familiar y el certificado de nacimiento valen más que cualquier fórmula.</p>'),
+    '<p class="disclaimer">Ante la duda, el recuerdo familiar y el certificado de nacimiento valen más que cualquier fórmula.</p>'),
   "jiaobei-guide": art("Guía del jiaobei", "Los cuatro veredictos, el ritual de tres lanzamientos y el arte de preguntar.",
     "Jiaobei: cómo consultar los bloques de luna (Poe) | BaziOracle",
     "Guía completa del jiaobei o bloques de luna: historia, los cuatro veredictos, el ritual de tres lanzamientos y cómo formular la pregunta.",
@@ -31,7 +31,7 @@ var ARTICLES = {
     "<h2>Los cuatro veredictos</h2><ul><li><strong>Sagrado (圣筊)</strong> — un lado plano y uno curvo arriba: aprobado.</li><li><strong>Risa (笑筊)</strong> — ambos planos: la pregunta es confusa o el corazón no está quieto; reformula.</li><li><strong>Negativo (阴筊)</strong> — ambos curvos: no concedido; pospone o cambia de rumbo.</li><li><strong>De pie (立筊)</strong> — un bloque se queda de canto: rarísimo, gran advertencia.</li></ul>" +
     "<h2>El ritual de tres lanzamientos</h2><p>Una pregunta se completa con tres lanzamientos seguidos: tres sagrados es un sí pleno, dos un sí con esfuerzo, uno un quizás, ninguno un no. En <a href='/es/jiaobei/'>nuestros bloques online</a> contamos los tres por ti.</p>" +
     "<h2>Cómo preguntar</h2><p>Pregunta cosas concretas y en presente: «¿debo aceptar esta oferta hoy?» funciona; «¿seré rico?» solo gana una risa. Tras un sí, busca una respuesta más rica con los <a href='/es/kau-cim/'>palillos de la fortuna</a>.</p>" +
-    '<p class="disclaimer">Con fines culturales y de entretenimiento.</p>'),
+    ''),
   "kau-cim-guide": art("Palillos de la fortuna", "El ritual, los cien signos y cómo confirmar con bloques.",
     "Kau Cim: los palillos de la fortuna de Guanyin | BaziOracle",
     "Cómo sacar y leer los palillos de Guanyin (kau cim): el ritual, los cien signos y la confirmación con bloques de luna.",
@@ -39,7 +39,7 @@ var ARTICLES = {
     "<p>El kau cim (求签) es el oráculo de los cien palillos de bambú de la tradición de Guanyin: quien pregunta agita el cilindro hasta que un palillo se levanta y cae. Cada palillo cita un episodio clásico y se gradúa como fortuna superior, media o inferior.</p>" +
     "<h2>El ritual</h2><ul><li>Di quién eres y qué preguntas: un asunto concreto.</li><li>Sostén el cilindro nivelado, con la mente asentada.</li><li>Inclínalo hasta que caiga exactamente uno.</li><li>Confirma con <a href='/es/jiaobei/'>bloques de luna</a>: veredicto sagrado acepta el signo.</li><li>Lee el poema y su interpretación.</li></ul>" +
     "<h2>Leer las notas</h2><p>Los signos superiores bendicen el empeño; los medios piden paciencia y método; los inferiores no son maldiciones sino correcciones de rumbo. Todos los cien signos están en nuestro <a href='/es/kau-cim/'>sessionador online</a>.</p>" +
-    '<p class="disclaimer">Con fines culturales y de entretenimiento.</p>'),
+    ''),
   "ziwei-guide": art("Zi Wei Dou Shu", "Doce palacios, estrellas mayores y las cuatro transformaciones.",
     "Zi Wei Dou Shu: guía de la astrología de la estrella púrpura | BaziOracle",
     "Zi Wei Dou Shu explicado para principiantes: los doce palacios, las estrellas mayores, las cuatro transformaciones y cómo leer tu primera carta.",
@@ -48,7 +48,7 @@ var ARTICLES = {
     "<h2>Los doce palacios</h2><p>Cada sector gobierna un dominio: el Yo (temperamento), Hermanos, Cónyuge, Hijos, Riqueza, Salud, Viajes, Amigos, Carrera, Propiedad, Fortuna interior y Padres.</p>" +
     "<h2>Las estrellas</h2><p>Catorce estrellas mayores forman el esqueleto —el emperador Zi Wei, el estratega Tian Ji, el sol y la luna— junto a estrellas menores. Cuatro llevan transformaciones: Lu (florecer), Quan (poder), Ke (fama), Ji (obstrucción).</p>" +
     "<h2>Tu primera lectura</h2><p>Empieza por tres palacios: Yo (tu estilo), Carrera (cómo construyes) y Cónyuge (la asociación). Traza tu carta gratis en la <a href='/es/ziwei/'>calculadora Zi Wei</a>.</p>" +
-    '<p class="disclaimer">Con fines culturales y de entretenimiento.</p>'),
+    ''),
   "five-elements-guide": art("Los cinco elementos", "Generación, control, fortaleza y elementos favorables: aplicados.",
     "Los cinco elementos en tu carta: Madera, Fuego, Tierra, Metal y Agua | BaziOracle",
     "Cómo los cinco elementos (Wu Xing) se generan y controlan, qué dice cada uno sobre el temperamento y cómo se eligen los elementos favorables.",
@@ -57,7 +57,7 @@ var ARTICLES = {
     "<h2>Personalidades</h2><ul><li><strong>Madera</strong> — benevolente, ambiciosa, con principios.</li><li><strong>Fuego</strong> — apasionada, ceremoniosa, veloz.</li><li><strong>Tierra</strong> — fiable, inclusiva, el pilar de todos.</li><li><strong>Metal</strong> — decisiva, leal, amante de las reglas.</li><li><strong>Agua</strong> — lista, adaptable, profunda.</li></ul>" +
     "<h2>Fortaleza y elementos favorables</h2><p>Si el elemento del maestro del día y su madre escasean, la carta es «débil» y pide apoyo; si dominan, es «fuerte» y busca salidas: riqueza, oficial y expresión. Una carta equilibrada busca el elemento más raro para cerrar el circuito.</p>" +
     "<p>Calcula tu reparto en la <a href='/es/five-elements/'>calculadora de cinco elementos</a> o empieza por la <a href='/es/'>carta completa</a>.</p>" +
-    '<p class="disclaimer">Con fines culturales y de entretenimiento.</p>')
+    '')
 };
 
 module.exports = {
@@ -68,7 +68,7 @@ module.exports = {
     blurb: "Herramientas gratuitas de adivinación china: calculadora BaZi, cartas Zi Wei Dou Shu, bloques de luna, palillos de Guanyin, I Ching, compatibilidad del zodiaco, almanaque diario y diccionario de sueños.",
     toolsTitle: "Herramientas", learnTitle: "Aprender", learnLabel: "Guías y artículos", aboutLabel: "Acerca de", privacyLabel: "Privacidad",
     tools: [["/es/", "Calculadora BaZi"], ["/es/ziwei/", "Zi Wei Dou Shu"], ["/es/jiaobei/", "Bloques de Luna"], ["/es/kau-cim/", "Palillos de Guanyin"], ["/es/iching/", "I Ching"], ["/es/zodiac/", "Zodiaco"], ["/es/almanac/", "Almanaque"], ["/es/dreams/", "Sueños"]],
-    legal: "Todo el contenido se ofrece con fines culturales y de entretenimiento; no constituye consejo sobre vida, salud ni finanzas. Tu destino lo escribes tú."
+    legal: "Tu destino lo escribes tú."
   },
   form: {
     calendar: "Calendario", solar: "Gregoriano", lunar: "Lunar chino", year: "Año de nacimiento", month: "Mes", day: "Día",
@@ -95,8 +95,8 @@ module.exports = {
       strongestIs: "Tu elemento más fuerte es",
       missingNote: "Faltan:", presentNote: "Los cinco elementos están presentes: una carta bien circulada.",
       balanceNote: ": equilíbralo tradicionalmente con nombre, dirección o color.",
-      discFull: "Cálculo con reglas tradicionales simplificadas, con fines culturales y de entretenimiento. Tu destino sigue en tus manos.",
-      discEl: "Modelo simplificado, con fines culturales y de entretenimiento.",
+      discFull: "Cálculo con reglas tradicionales simplificadas. Tu destino sigue en tus manos.",
+      discEl: "Modelo simplificado.",
       fiveTitlePg: "Tus cinco elementos",
       invalidDate: "Fecha no válida: revisa los datos (las fechas lunares deben existir de verdad).",
       personality: {
@@ -110,7 +110,7 @@ module.exports = {
     zw: {
       soul: "Alma", body: "Cuerpo", element: "Elemento", chart: "Carta Zi Wei Dou Shu",
       title: "Tu carta Zi Wei (Estrella Púrpura)",
-      disc: "Zi Wei Dou Shu es un sistema profundo; esta carta muestra los doce palacios con estrellas mayores y menores, con fines culturales y de entretenimiento.",
+      disc: "Zi Wei Dou Shu es un sistema profundo; esta carta muestra los doce palacios con estrellas mayores y menores.",
       bodyPalace: " (Cuerpo)",
       ti: ["Zi 00:00–00:59", "Chou 01:00–02:59", "Yin 03:00–04:59", "Mao 05:00–06:59", "Chen 07:00–08:59", "Si 09:00–10:59", "Wu 11:00–12:59", "Wei 13:00–14:59", "Shen 15:00–16:59", "You 17:00–18:59", "Xu 19:00–20:59", "Hai 21:00–22:59", "Zi 23:00–23:59"],
       izLang: "en-US", showBrightness: false, cornerRoman: true,
@@ -130,7 +130,7 @@ module.exports = {
       badYear: "Introduce un año entre 1900 y 2100.",
       legend: "Leyenda", legendCur: "década en curso", legendYear: "año {y}",
       legendXx: "límite menor", legendBorrow: "estrella prestada", legendEmpty: "palacio vacío",
-      discDY: "Las lecturas decenales y anuales siguen el método tradicional de recorrido de palacios con reglas simplificadas; con fines culturales y de entretenimiento."
+      discDY: "Las lecturas decenales y anuales siguen el método tradicional de recorrido de palacios con reglas simplificadas."
     },
     jb: {
       throw: "Lanzar los bloques", threeNote: "Tres lanzamientos completan una pregunta", throw3: "Lanzamiento %d de 3",
@@ -223,7 +223,7 @@ module.exports = {
       sub: "Introduce tus datos de nacimiento para trazar los doce palacios: estrellas mayores, menores, transformaciones, alma y cuerpo.",
       crumb: "Zi Wei", date: "Fecha de nacimiento (gregoriana)", hour: "Hora de nacimiento", gender: "Género", btn: "Trazar mi carta",
       palKicker: "Doce palacios", palTitle: "Qué gobierna cada palacio", palTh: ["Palacio", "Gobierna"],
-      palaces: [["Yo (Ming)", "Temperamento y destino propio"], ["Hermanos", "Hermanos y cercanos"], ["Cónyuge", "Matrimonio y pareja"], ["Hijos", "Hijos y discípulos"], ["Riqueza", "Dinero y recursos"], ["Salud", "Cuerpo y salud"], ["Viajes", "Viajes y cambios"], ["Amigos", "Amistades y socios"], ["Carrera", "Profesión y logros"], ["Propiedad", "Hogar y bienes"], ["Fortuna", "Vida interior y suerte"], ["Padres", "Padres y protectores"]],
+      palaces: [["Yo (Ming)", "Cabeza de los doce palacios; rige el talante, la inteligencia y el calibre del destino —prosperidad, declive y longevidad—. El Libro Lo toma como eje: fijado este palacio, la dicha o desdicha de las estrellas halla su asiento."], ["Hermanos", "Número y calidad de hermanos y allegados, la solidez del vínculo y si prestan ayuda en los apuros."], ["Cónyuge", "Época del matrimonio, el carácter de la pareja, la armonía o el conflicto y el desenlace de la unión."], ["Hijos", "Número y valía de los hijos, y a la vez el lazo con los más jóvenes, discípulos y subordinados."], ["Riqueza", "Ganancias y pérdidas de toda la vida, el modo de administrar y el caudal de los recursos: la fuente que sostiene la vida."], ["Salud", "Fortaleza del cuerpo, las dolencias a que se es propenso y el riesgo de enfermedad o infortunio; pide cuidado y mesura."], ["Viajes", "Traslados, mudanzas, largas distancias y el desarrollo lejos de casa, con los patronos y oportunidades que se hallan fuera."], ["Amigos", "Lazo con amigos, subordinados y el público en general; de ahí su antiguo nombre de «palacio de los sirvientes»."], ["Carrera", "Fama, cargo, derrotero profesional y ascensos o caídas: la vocación que uno construye."], ["Propiedad", "Bienes raíces, cimientos de la familia, patrimonio heredado y los cambios de domicilio."], ["Fortuna", "Profundidad de la bendición, la serenidad interior, los gustos y la longevidad."], ["Padres", "Vínculo y protección de los padres, la crianza, y los mayores como patronos."]],
       intro: "Zi Wei Dou Shu, atribuido al sabio Chen Tuan, reparte más de un centenar de estrellas simbólicas por doce palacios y lee la vida a través de sus combinaciones y las cuatro transformaciones (Lu, Quan, Ke, Ji). Empieza por las estrellas mayores de tus palacios <b>Yo</b> y <b>Carrera</b>. Guía: <a href='/es/learn/ziwei-guide/'>introducción al Zi Wei Dou Shu</a>."
     },
     jiaobei: {
@@ -311,9 +311,9 @@ module.exports = {
   animalLuckyTitle: "Perfil de la suerte", animalNumbers: "Números de la suerte:", animalColors: "Colores:",
   animalBeyondTitle: "Más allá del zodiaco", animalBeyond: "Tu animal es solo la rama del año: una porción de la carta. Ve tus cuatro pilares completos con la <a href='{bazi}'>calculadora BaZi</a> o tus palacios de estrellas con <a href='{ziwei}'>Zi Wei Dou Shu</a>.",
   hexH1: "Hexagrama {n} — {name} ({py})", hexPure: "(hexagrama puro)", hexAbove: "Arriba:", hexBelow: "Abajo:",
-  hexJudgmentTitle: "El oráculo (texto clásico)", hexDisc: "Los juicios proceden del Zhouyi (dominio público); las lecturas modernas son de BaziOracle, con fines culturales y de entretenimiento.",
+  hexJudgmentTitle: "El oráculo (texto clásico)", hexDisc: "Los juicios proceden del Zhouyi (dominio público); las lecturas modernas son de BaziOracle.",
   hexTitle: "Hexagrama {n} del I Ching — {name} ({py}) | BaziOracle", hexAll: "Los 64",
   signH1: "Palillo n.º {n} de Guanyin — {title}", signPoemTitle: "El poema", signMeaningTitle: "Interpretación",
-  signTitle: "Palillo {n} de Guanyin — {title} ({grade}) | BaziOracle", signAgain: "Sacar otro", signDisc: "Poemas e interpretaciones siguen el texto tradicional; con fines culturales y de entretenimiento.", signWord: "Signo",
+  signTitle: "Palillo {n} de Guanyin — {title} ({grade}) | BaziOracle", signAgain: "Sacar otro", signDisc: "Poemas e interpretaciones siguen el texto tradicional.", signWord: "Signo",
   p404: "Página no encontrada", p404Sub: "Hasta el I Ching tiene un hexagrama de Antes de la Culminación. Vuelve y lanza de nuevo:", p404Btn: "Inicio"
 };

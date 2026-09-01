@@ -144,7 +144,7 @@ function homeZh() {
     ["生日信息安全吗？", "安全。排盘计算全部在浏览器本地完成，生日不会上传服务器。"],
     ["不知道出生时辰怎么办？", "时柱按子时估算，结果仅供参考；建议向家人核实确切时辰。"],
     ["为什么需要真太阳时校正？", "出生地离时区中央经线越远，真太阳时与钟表时差距越大，可能改变时柱；本站自动完成经度与均时差校正。"],
-    ["算命准吗？", "仅供文化参考与自我思考，性格与选择才是命运的主笔。"]
+    ["算命准吗？", "仅性格与选择才是命运的主笔。"]
   ].map(function (f) { return { "@type": "Question", "name": f[0], "acceptedAnswer": { "@type": "Answer", "text": f[1] } }; }) };
 
   var body = '' +
@@ -246,8 +246,8 @@ function fiveElements(Z) {
 function ziwei(Z) {
   var p = Z ? "/zh/ziwei/" : "/ziwei/";
   var pal = Z
-    ? [["命宫","Self & temperament"],["兄弟","Siblings"],["夫妻","Spouse"],["子女","Children"],["财帛","Wealth"],["疾厄","Health"],["迁移","Travel"],["交友","Friends"],["官禄","Career"],["田宅","Property"],["福德","Fortune & mind"],["父母","Parents"]]
-    : [["Self Palace","命宫 — self & temperament"],["Siblings","兄弟宫"],["Spouse","夫妻宫"],["Children","子女宫"],["Wealth","财帛宫"],["Health","疾厄宫"],["Travel","迁移宫"],["Friends","交友宫"],["Career","官禄宫"],["Property","田宅宫"],["Fortune","福德宫"],["Parents","父母宫"]];
+    ? [["命宫","为十二宫之首，主一生穷达寿夭、性情才智与格局高低。《全书》以命宫为枢纽——命宫既定，诸星吉凶方有所归。"],["兄弟宫","主手足姊妹之多寡、情谊之厚薄，及缓急之际能否相互扶持。"],["夫妻宫","主婚姻之早晚、配偶之贤愚、刑克聚散，以论婚配之吉凶。"],["子女宫","主子嗣之多寡贤否，兼主晚辈、门徒、下属之缘分。"],["财帛宫","主一生财禄之得失、理财之格局、财源之盈虚，为养命之源。"],["疾厄宫","主体质之强弱、易患何疾、灾病凶险之有无，宜静养调护。"],["迁移宫","主出外、移居、远行、异地之发展，及在外所遇之贵人与际遇。"],["交友宫","主朋友、下属、众人之缘分，得助力之大小，故古称奴仆宫。"],["官禄宫","主功名利禄、事业之方向、仕途之升黜，为立身之本业。"],["田宅宫","主不动产、家业根基、祖产之厚薄与居所之变迁。"],["福德宫","主福报之厚薄、精神之安乐、思想志趣与寿元。"],["父母宫","主父母之缘分、荫庇教养，兼主相貌与长辈贵人。"]]
+    : [["Life Palace","Head of the twelve; governs fortune and hardship, lifespan, temperament and overall pattern — the pivot around which all stars' auspiciousness turns."],["Siblings","Number of brothers and sisters, closeness of bonds, and whether they lend support in times of need."],["Spouse","Timing of marriage, the spouse's character, harmony or conflict, and the fate of the union."],["Children","Number and quality of children, plus ties to juniors, disciples and subordinates."],["Wealth","Lifetime income and loss, the pattern of money management, the ebb and flow of resources — the source that sustains life."],["Health","Constitution, which ailments one is prone to, and the risk of illness or misfortune; calls for care and moderation."],["Travel","Journeys, relocation, development far from home, and the patrons and chances met abroad."],["Friends","Ties with friends, subordinates and the public at large — hence the old name 'Servants Palace'."],["Career","Fame, office, professional direction, rise or fall — the vocation one builds."],["Property","Real estate, family foundation, ancestral assets, and changes of dwelling."],["Fortune & Mind","Depth of blessing, spiritual contentment, tastes and outlook, and longevity."],["Parents","Bond with and protection from parents, upbringing, and elders as patrons."]];
   var palRows = pal.map(function (x) { return "<tr><td><b>" + x[0] + "</b></td><td>" + x[1] + "</td></tr>"; }).join("");
   var body = '' +
   '<section class="hero container"><div class="kicker">紫微斗数 · Purple Star Astrology</div>' +
@@ -255,16 +255,19 @@ function ziwei(Z) {
   '<p class="sub">' + (Z ? "输入出生资料，立即排出十二宫紫微命盘：主星、辅星、化曜、命主与身主一应俱全。" : "Enter your birth details to chart the twelve palaces — major stars, minor stars, transformations, soul and body stars.") + "</p></section>" +
   '<section class="container" style="max-width:760px"><form id="zw-form" class="card" style="text-align:left">' +
   '<div class="form-row">' +
-  '<div class="field"><label>' + (Z ? "出生日期（公历）" : "Birth date (Gregorian)") + '</label><input type="date" name="date" required></div>' +
+  '<div class="field"><label>' + (Z ? "出生年份" : "Birth year") + '</label><select name="year">' + YEAR_OPTS + "</select></div>" +
+  '<div class="field"><label>' + (Z ? "出生月份" : "Month") + '</label><select name="month">' + MON_OPTS + "</select></div>" +
+  '<div class="field"><label>' + (Z ? "出生日期" : "Day") + '</label><select name="day">' + DAY_OPTS + "</select></div></div>" +
+  '<div class="form-row">' +
   '<div class="field"><label>' + (Z ? "出生时辰" : "Birth hour") + '</label><select name="timeIndex"></select></div>' +
   '<div class="field"><label>' + (Z ? "性别" : "Gender") + '</label><select name="gender"><option value="male">' + (Z ? "男" : "Male") + '</option><option value="female">' + (Z ? "女" : "Female") + "</option></select></div>" +
-  '<div class="field"><label>' + (Z ? "流年查询年份" : "Fortune year") + '</label><input type="number" name="year" min="1900" max="2100" step="1" value="' + NOW_Y + '" inputmode="numeric" aria-describedby="zw-year-hint"><small id="zw-year-hint" style="opacity:.7">' + (Z ? "用于推算流年宫位与当前大限" : "Drives the yearly palace and the decade you are in") + "</small></div>" +
+  '<div class="field"><label>' + (Z ? "流年查询年份" : "Fortune year") + '</label><input type="number" name="qyear" min="1900" max="2100" step="1" value="' + NOW_Y + '" inputmode="numeric" aria-describedby="zw-year-hint"><small id="zw-year-hint" style="opacity:.7">' + (Z ? "用于推算流年宫位与当前大限" : "Drives the yearly palace and the decade you are in") + "</small></div>" +
   "</div>" +
   '<button class="btn" type="submit">' + (Z ? "排出命盘" : "Cast My Chart") + "</button></form>" +
   '<div class="result" id="zw-out"></div>' + AD + "</section>" +
   '<section class="block container" style="max-width:860px"><div class="sec-head"><div class="kicker">Twelve palaces</div><h2>' + (Z ? "十二宫各管什么？" : "What the Twelve Palaces Govern") + "</h2></div>" +
-  '<div class="scrollx"><table class="t"><tr><th>' + (Z ? "宫位" : "Palace") + "</th><th>" + (Z ? "主管" : "Governs") + "</th></tr>" + palRows + "</table></div>" +
-  "<p class='mt2'>" + (Z ? "紫微斗数相传由五代道士陈抟（希夷先生）所创，以紫微星为首的百余颗虚星布入十二宫，配合四化（禄权科忌）推演人生格局。新生建议先看<b>命宫</b>与<b>官禄宫</b>的主星组合。延伸阅读：<a href='/zh/learn/ziwei-guide/'>紫微斗数入门指南</a>。" : "Zi Wei Dou Shu, attributed to the Daoist sage Chen Tuan, scatters over a hundred symbolical stars through twelve palaces and reads life through their combinations and the four transformations (Lu, Quan, Ke, Ji). Start with the major stars of your <b>Self</b> and <b>Career</b> palaces. Read the <a href='/learn/ziwei-guide/'>beginner's guide to Zi Wei Dou Shu</a>.") + "</p></section>";
+  '<div class="scrollx"><table class="t pal"><tr><th>' + (Z ? "宫位" : "Palace") + "</th><th>" + (Z ? "主管" : "Governs") + "</th></tr>" + palRows + "</table></div>" +
+  "<p class='mt2'>" + (Z ? "紫微斗数相传由五代道士陈抟（希夷先生）所创，以紫微星为首的百余颗虚星布入十二宫，配合四化（禄权科忌）推演人生格局。上表各宫所主依《紫微斗数全书·十二宫论》。新生建议先看<b>命宫</b>与<b>官禄宫</b>的主星组合。延伸阅读：<a href='/zh/learn/ziwei-guide/'>紫微斗数入门指南</a>。" : "Zi Wei Dou Shu, attributed to the Daoist sage Chen Tuan, scatters over a hundred symbolical stars through twelve palaces and reads life through their combinations and the four transformations (Lu, Quan, Ke, Ji); the table above follows the Treatise on the Twelve Palaces in the Zi Wei Dou Shu Quan Shu. Start with the major stars of your <b>Self</b> and <b>Career</b> palaces. Read the <a href='/learn/ziwei-guide/'>beginner's guide to Zi Wei Dou Shu</a>.") + "</p></section>";
   return {
     title: Z ? "紫微斗数排盘_免费在线紫微命盘查询 | 八字神谕" : "Free Zi Wei Dou Shu Chart — Purple Star Astrology Calculator | BaziOracle",
     desc: Z ? "免费在线紫微斗数排盘：十二宫主星副星、化曜、命主身主，输入生日时辰即可排出。" : "Free online Zi Wei Dou Shu (Purple Star) chart: twelve palaces with major and minor stars, transformations, soul and body stars — cast instantly from your birth data.",

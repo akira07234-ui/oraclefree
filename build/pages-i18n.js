@@ -105,14 +105,17 @@ function pageZiwei(P) {
     '<p class="sub">' + Z.sub + "</p></section>" +
     '<section class="container" style="max-width:760px"><form id="zw-form" class="card" style="text-align:left">' +
     '<div class="form-row">' +
-    '<div class="field"><label>' + Z.date + '</label><input type="date" name="date" required></div>' +
+    '<div class="field"><label>' + P.form.year + '</label><select name="year">' + YEAR_OPTS + "</select></div>" +
+    '<div class="field"><label>' + P.form.month + '</label><select name="month">' + MON_OPTS + "</select></div>" +
+    '<div class="field"><label>' + P.form.day + '</label><select name="day">' + DAY_OPTS + "</select></div></div>" +
+    '<div class="form-row">' +
     '<div class="field"><label>' + Z.hour + '</label><select name="timeIndex"></select></div>' +
     '<div class="field"><label>' + Z.gender + '</label><select name="gender"><option value="male">' + P.form.male + '</option><option value="female">' + P.form.female + "</option></select></div>" +
-    '<div class="field"><label>' + P.tools.zw.queryYear + '</label><input type="number" name="year" min="1900" max="2100" step="1" value="' + NOW_Y + '" inputmode="numeric"><small style="opacity:.7">' + P.tools.zw.queryYearHint + "</small></div></div>" +
+    '<div class="field"><label>' + P.tools.zw.queryYear + '</label><input type="number" name="qyear" min="1900" max="2100" step="1" value="' + NOW_Y + '" inputmode="numeric"><small style="opacity:.7">' + P.tools.zw.queryYearHint + "</small></div></div>" +
     '<button class="btn" type="submit">' + Z.btn + "</button></form>" +
     '<div class="result" id="zw-out"></div>' + AD + "</section>" +
     '<section class="block container" style="max-width:860px"><div class="sec-head"><div class="kicker">' + Z.palKicker + "</div><h2>" + Z.palTitle + "</h2></div>" +
-    '<div class="scrollx"><table class="t"><tr><th>' + Z.palTh[0] + "</th><th>" + Z.palTh[1] + "</th></tr>" + palRows + "</table></div>" +
+    '<div class="scrollx"><table class="t pal"><tr><th>' + Z.palTh[0] + "</th><th>" + Z.palTh[1] + "</th></tr>" + palRows + "</table></div>" +
     "<p class='mt2'>" + Z.intro + "</p></section>";
   return { enPath: "/ziwei/", title: Z.title, desc: Z.desc, body: body,
     scripts: l10nScript(P) + tpl.S(["/assets/vendor/iztro.min.js", "/assets/js/ziwei.js"]),

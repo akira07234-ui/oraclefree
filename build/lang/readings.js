@@ -6,7 +6,7 @@ module.exports = {
 zh: {
   jp: {
     title: "详细解盘",
-    srcNote: "引文依通行本，字句或因版本而异；白话解读为现代转述，供文化学习与娱乐参考。",
+    srcNote: "引文依通行本，字句或因版本而异；白话解读为现代转述。",
     sec: { a: "一 · 日主本性", b: "二 · 月令提纲", c: "三 · 旺衰与喜用", d: "四 · 十神与四柱", e: "五 · 大运节奏", f: "六 · 纳音年命" },
     jishan: { t: "欲知贵贱，先观月令乃提纲。", s: "《渊海子平·继善篇》" },
     ditian: { t: "能知衰旺之真机，其于三命之奥，思过半矣。", s: "《滴天髓》" },
@@ -67,33 +67,73 @@ zh: {
     nayinLine: "年命纳音「{ny}」——古人以物象取意，象此气之形。"
   },
   zp: {
-    title: "命盘解读",
-    srcLine: "星曜意象本于《紫微斗数全书》诸星论；白话为现代解读，供文化参考。",
-    soulLab: "命宫",
+    title: "命盘针对性解读",
+    srcLine: "以下依《紫微斗数全书》诸星古性与四化之理，结合【本盘实际】坐守的星曜、庙旺利陷与生年四化落宫而作，非通用套话；白话为现代转述。",
+    soulLab: "命格主调",
     mutLab: "四化",
     mutNote: "化禄主机缘、化权主掌控、化科主名声、化忌主磨练——化在何宫，即人生着力处。",
     mutText: { "禄": "化禄：顺遂与机会。", "权": "化权：掌控与魄力。", "科": "化科：名声与贵人。", "忌": "化忌：磨练与执着。" },
-    pal: {
-      "命宫": "命宫主星是你的人生底色：看星性与四化，即知你的默认行事风格。",
-      "官禄": "官禄宫看事业打法：主星即你的工作风格与成就路径。",
-      "财帛": "财帛宫看进财方式：是稳守、是活络、还是以技生财。",
-      "夫妻": "夫妻宫看亲密关系的画风：相处模式与相互成就之道。"
+    bodyLab: "身宫 · 后天重心",
+    bodyNote: "身宫是你后天着力所在，其落宫提示中年后人生的重心。",
+    sanheLab: "三方四正 · 格局辅助",
+    sanheNote: "命宫的三方（同三合局的两宫）与对宫（迁移）共同构成格局的外围，主星会照于此，影响你能量的发挥方式。",
+    huaLab: "生年四化 · 人生主线",
+    wxju: {
+      "水二局": { g: "水二局，智主流转，如水之就下。", m: "二岁起大限，起运最早；一生多迁移变化，宜以智取胜、顺势而为。" },
+      "木三局": { g: "木三局，仁主生发，如木之渐长。", m: "三岁起运，成事靠成长与积累，宜深耕一域，忌频繁折迁改道。" },
+      "金四局": { g: "金四局，义主肃敛，如金之成器。", m: "四岁起运，原则与执行力强，宜立规矩、以专业与纪律立身。" },
+      "土五局": { g: "土五局，信主厚重，如土之载物。", m: "五岁起运，大器晚成之格；稳扎稳打、厚积薄发，忌急于求成。" },
+      "火六局": { g: "火六局，礼主炎上，如火之明动。", m: "六岁起运，热情与爆发力强，宜借势而动，防急躁燎原。" }
+    },
+    geju: [
+      { name: "杀破狼格", need: ["七杀", "破军", "贪狼"], scope: "sanfang", g: "七杀、破军、贪狼三方会齐，古谓之『杀破狼』，变动开创之局。", m: "人生节奏大开大合、不安于现状，宜走开拓、竞争、变革型路线；成在敢闯，败在浮躁。" },
+      { name: "机月同梁格", need: ["天机", "太阴", "天同", "天梁"], scope: "sanfang", g: "机、月、同、梁四方会齐，古诀『机月同梁作吏人』。", m: "宜在稳定组织中做专业与管理，靠稳健与专业立身；激进创业非所长。" },
+      { name: "紫府同宫格", need: ["紫微", "天府"], scope: "ming", g: "紫微、天府同守命宫，帝座与库星同宫，尊贵富厚之格。", m: "领导气质与统筹力兼备、格局高；须防好面子、决策偏保守。" },
+      { name: "府相朝垣格", need: ["天府", "天相"], scope: "sanfang", g: "天府、天相会照命宫，谓之『府相朝垣』，主食禄安稳。", m: "衣食丰足、贵人多助，宜在大平台、大机构中掌事发光。" },
+      { name: "日月同临格", need: ["太阳", "太阴"], scope: "ming", g: "太阳、太阴同守命宫，日月同临，阴阳兼备。", m: "刚柔并济、外放与内敛兼具，宜协调调度类角色；感情上易左右权衡。" },
+      { name: "火贪格", need: ["贪狼", "火星"], scope: "ming", g: "贪狼与火星同宫，古诀『火贪志气高』，主横发之机。", m: "机遇型爆发格局，机会一来成绩斐然；宜趁势而上，防暴起暴落。" },
+      { name: "铃贪格", need: ["贪狼", "铃星"], scope: "ming", g: "贪狼与铃星同宫，同主意外机遇与横发。", m: "善捕冷门机会，宜创新领域；须练守成之功，防得而复失。" }
+    ],
+    jixing: ["左辅", "右弼", "文昌", "文曲", "天魁", "天钺", "禄存"],
+    shaxing: ["擎羊", "陀罗", "火星", "铃星", "地空", "地劫"],
+    jisha: {
+      jiLab: "六吉星会命",
+      jiText: "吉星会照，主助力、才华与贵人——辅弼得人、昌曲添才、魁钺引路、禄存稳财，格局为之提亮。",
+      shaLab: "六煞星会命",
+      shaText: "煞星会照，主竞争与磨砺——羊陀磨性、火铃添急、空劫减实；煞不为凶，砺之则能成大器。"
+    },
+    mzLab: "命主 · 身主",
+    mzNote: "命主星看天性所近，身主星看后天所归，二星之性可参下列解读。",
+    emptySec: "本宫无正曜，参对宫或借星而论，重在后天经营。",
+    secs: [["官禄", "事业"], ["财帛", "财运"], ["夫妻", "感情"]],
+    noStar: "本宫无十四正曜（空宫），须借对宫主星论之——性格带有对宫之星的影子，早年多变化、易受环境影响。",
+    bright: { "庙": "星之优点尽显", "旺": "能量充沛、发挥有力", "得": "顺遂发挥", "利": "平稳发挥", "平": "中性发挥", "不": "优点受抑", "陷": "短板当家，须后天磨砺方显" },
+    hua: {
+      "禄": "化禄——财禄与顺遂流入此宫，是资源与机会所在，宜把握生发。",
+      "权": "化权——主导与掌控之力聚于此宫，宜主动争取，惟防过于强势。",
+      "科": "化科——名声、贵人与化解之力在此宫，逢凶呈祥，利考试、声望与人际。",
+      "忌": "化忌——执念与阻碍缠于此宫，是你此生的功课所在，需用心经营、勿钻牛角。"
+    },
+    palDomain: {
+      "命宫": "性格底色与一生格局", "兄弟": "手足与亲近伙伴", "夫妻": "婚姻与感情对象", "子女": "子女、晚辈与创作",
+      "财帛": "理财与赚钱方式", "疾厄": "体质与健康", "迁移": "外出、人际舞台与外在际遇", "仆役": "朋友、下属与众人缘",
+      "官禄": "事业、功名与做事方式", "田宅": "不动产、家宅与根基", "福德": "精神世界、兴趣与享福", "父母": "父母长辈与上司，亦主相貌"
     },
     stars: {
-      "紫微": "帝王之星：气度沉稳，天生主事者，宜居领导之位。",
-      "天机": "军师之星：心思敏捷，善谋略、善应变。",
-      "太阳": "光明之星：博爱外放、乐于付出，名声在外。",
-      "武曲": "财星之星：果断务实，执行力与财事皆强。",
-      "天同": "福气之星：随和乐观，安享而不争。",
-      "廉贞": "感情与原则交织之星：成败系于一念之间的自律。",
-      "天府": "库星：稳重大器，善积累与管理。",
-      "太阴": "月亮之星：温柔细腻、重情内敛，利文书与田宅。",
-      "贪狼": "多才之星：机缘与应酬皆旺，兴趣广而欲望盛。",
-      "巨门": "口才之星：锐利善辨、长于研究，是非亦随之。",
-      "天相": "印星：忠厚辅弼，天生的协调者与幕僚。",
-      "天梁": "荫星：老成持重，逢凶化吉，宜专业与监护之职。",
-      "七杀": "将星：冲劲十足，宜开创突破，忌久守成。",
-      "破军": "耗星：破旧立新，变动之中得机遇。"
+      "紫微": { g: "紫微属土，中天尊星，为帝座，化气曰尊。", m: "领导格、自尊心强、格局高、好体面，喜掌权不喜受制；天生要当主角，须学谦下方能服众。" },
+      "天机": { g: "天机属木，南斗益算之星，化气曰善。", m: "智慧谋略之星，心思活络、反应快、多才艺、善规划；易多思多虑、临事犹豫、心绪不宁。" },
+      "太阳": { g: "太阳属火，中天大贵，化气曰贵。", m: "光明博爱之星，主施予、重名声、热心付出、照拂他人；男命多应于父夫子，易劳心耗神、爱面子。" },
+      "武曲": { g: "武曲属金，北斗财星，化气曰财。", m: "刚毅果决的财星，主行动力、务实理财、说做就做；性刚孤克，重实际而轻情感表达。" },
+      "天同": { g: "天同属水，南斗福星，化气曰福。", m: "福泽之星，主安逸知足、人缘和善、有童心与享受；易懒散、缺冲劲、情绪敏感、遇难想躲。" },
+      "廉贞": { g: "廉贞属火，北斗囚星，化气曰囚，为次桃花。", m: "复杂多才之星，原则与欲望交织、感情浓烈、有手腕魄力；易钻牛角尖、爱憎分明、惹是非。" },
+      "天府": { g: "天府属土，南斗令星，为财库，化气曰令。", m: "稳重库星，主守成、包容、善理财藏富、有领导气度；偏保守、怕变动、重面子，宜开创为辅。" },
+      "太阴": { g: "太阴属水，中天贵星，化气曰富，主母、妻、女。", m: "柔智之星，主细腻洁净、重感情、善积蓄、有审美与直觉；易多愁善感、内敛被动、追求完美。" },
+      "贪狼": { g: "贪狼属木，北斗桃花之星，主欲望与才艺。", m: "多才多欲之星，善交际、有魅力、兴趣广、机遇多；易博而不精、耽于享乐、感情多扰。" },
+      "巨门": { g: "巨门属水，北斗暗星，化气曰暗。", m: "口舌思辨之星，观察入微、能言善道、研究心强；易多疑、招口舌是非、暗中生波。" },
+      "天相": { g: "天相属水，斗中印星，为官禄主，化气曰印。", m: "辅佐印星，主公正尽责、重形象、善协调、乐于成人之美；易受制于人、耳根软、需靠贵人。" },
+      "天梁": { g: "天梁属土，南斗荫星，为老人星，化气曰荫。", m: "荫庇解厄之星，主清高正直、善逢凶化吉、有长辈缘、乐于庇护；易好说教、清闲自命、逢劳。" },
+      "七杀": { g: "七杀属金，南斗将星，主肃杀。", m: "将星，主刚烈独立、冒险犯难、执行力强、说干就干；易冲动孤克、人生起伏大、不喜束缚。" },
+      "破军": { g: "破军属水，北斗耗星，化气曰耗。", m: "先锋耗星，主开创变革、先破后立、不安于现状；易冲动耗损、起伏反复、需学收尾。" }
     }
   }
 },
@@ -102,7 +142,7 @@ zh: {
 en: {
   jp: {
     title: "Detailed Reading",
-    srcNote: "Classical quotations follow popular printed editions; wording may vary between versions. Plain-language renderings are modern, for cultural learning and entertainment.",
+    srcNote: "Classical quotations follow popular printed editions; wording may vary between versions. Plain-language renderings are modern.",
     sec: { a: "1 · The Day Master", b: "2 · The Month Command", c: "3 · Strength & Favorable Elements", d: "4 · Ten Gods Across the Pillars", e: "5 · The Luck Rhythm", f: "6 · Year NaYin" },
     jishan: { t: "欲知贵贱，先观月令乃提纲。", s: "《渊海子平·继善篇》", ve: "\"To know rank and worth, first read the month command — it is the outline of the whole chart.\"" },
     ditian: { t: "能知衰旺之真机，其于三命之奥，思过半矣。", s: "《滴天髓》", ve: "\"Grasp the true mechanism of strength and weakness, and more than half the mysteries of destiny are yours.\"" },
@@ -163,33 +203,66 @@ en: {
     nayinLine: "Year NaYin: “{ny}” — the sixty pairings take their images from things, per the San Ming Tong Hui."
   },
   zp: {
-    title: "Reading Your Chart",
-    srcLine: "Star imagery follows the star lore of the Zi Wei Dou Shu Quan Shu; renderings are modern, for cultural reference.",
-    soulLab: "Self Palace",
+    title: "Targeted Chart Reading",
+    srcLine: "Built from THIS chart — the stars actually seated, their brightness and the natal transformations, read per the star lore of the Zi Wei Dou Shu Quan Shu. Modern renderings, not boilerplate.",
+    soulLab: "Life Pattern",
     mutLab: "Four Transformations",
     mutNote: "Lu favors, Quan empowers, Ke ennobles, Ji obstructs — the palace carrying each is where that theme plays out.",
     mutText: { "禄": "Lu: opportunity and flow.", "权": "Quan: control and drive.", "科": "Ke: reputation and mentors.", "忌": "Ji: friction — and mastery through it." },
-    pal: {
-      "命宫": "The Self Palace is your default operating style: read its stars and transformations.",
-      "官禄": "The Career palace shows how you build — its stars are your working style.",
-      "财帛": "The Wealth palace shows how money flows to you — earned, managed, or gathered.",
-      "夫妻": "The Spouse palace sketches partnership — the flavor of your closest bond."
+    bodyLab: "Body Palace · Where Life Concentrates",
+    bodyNote: "The Body Palace is where your effort lands after youth. It falls in",
+    sanheLab: "Trine & Opposition · The Frame",
+    sanheNote: "A palace is read together with its trine partners and its opposition; the stars meeting there shape how your energy expresses.",
+    huaLab: "Natal Transformations · The Main Line",
+    noStar: "No major star sits here (an empty palace) — it reads through the opposite palace's stars; early years shift with the environment.",
+    bright: { "庙": "exalted — strengths fully shine", "旺": "strong — full flow", "得": "well-placed — smooth", "利": "favorable — steady", "平": "neutral", "不": "weakened — held back", "陷": "fallen — weaknesses lead; discipline turns it" },
+    hua: {
+      "禄": "Hua Lu — resources and flow pour into this palace: the place of opportunity; invest and grow here.",
+      "权": "Hua Quan — command and drive concentrate here: claim the lead, mind the steamroller.",
+      "科": "Hua Ke — reputation, mentors and rescue live here: it turns misfortune around; good for exams, standing and networks.",
+      "忌": "Hua Ji — obsession and friction bind this palace: your life's coursework; manage it, don't spiral on it."
     },
+    palDomain: {
+      "命宫": "core temperament and life pattern", "兄弟": "siblings and close peers", "夫妻": "marriage and the partner", "子女": "children, juniors and creative work",
+      "财帛": "money style and income", "疾厄": "body and health", "迁移": "the outside world and openings abroad", "仆役": "friends, subordinates and the crowd",
+      "官禄": "career, achievement and working style", "田宅": "property, home and foundations", "福德": "inner life, tastes and blessing", "父母": "parents, elders and bosses; also the face"
+    },
+    geju: [
+      { name: "Sha-Po-Lang Frame", need: ["七杀", "破军", "贪狼"], scope: "sanfang", g: "Qi Sha, Po Jun and Tan Lang meet across the trine — the classic frame of upheaval and pioneering.", m: "Life in big swings, allergic to standing still; built for pioneering, competitive, transformative paths. Boldness wins, restlessness loses." },
+      { name: "Ji-Yue-Tong-Liang Frame", need: ["天机", "太阴", "天同", "天梁"], scope: "sanfang", g: "Tian Ji, Tai Yin, Tian Tong and Tian Liang meet across the trine — the classics say 'Ji Yue Tong Liang makes the skilled official'.", m: "Built for professional and managerial mastery inside stable structures; wild gambles are not the edge here." },
+      { name: "Zi-Fu in the Life Palace", need: ["紫微", "天府"], scope: "ming", g: "Zi Wei and Tian Fu share the Life Palace — emperor and treasury together, a noble and wealthy frame.", m: "Command plus administration in one frame; watch vanity and conservative calls." },
+      { name: "Fu-Xiang Saluting the Frame", need: ["天府", "天相"], scope: "sanfang", g: "Tian Fu and Tian Xiang salute the Life Palace — the frame of steady provision.", m: "Provision and patrons come; best shining inside large platforms and institutions." },
+      { name: "Sun & Moon Together", need: ["太阳", "太阴"], scope: "ming", g: "Tai Yang and Tai Yin share the Life Palace — sun and moon in one person, firm and flexible at once.", m: "Suited to coordination roles; in love, prone to weighing both sides." },
+      { name: "Huo-Tan Frame", need: ["贪狼", "火星"], scope: "ming", g: "Tan Lang with Huo Xing in the Life Palace — the classics say 'Huo Tan, ambition runs high': sudden fortune.", m: "When the chance comes, results explode. Ride it; mind the crash." },
+      { name: "Ling-Tan Frame", need: ["贪狼", "铃星"], scope: "ming", g: "Tan Lang with Ling Xing in the Life Palace — sudden fortune from unexpected quarters.", m: "Catches off-beat openings; suited to new frontiers — learn to hold what you win." }
+    ],
+    jixing: ["左辅", "右弼", "文昌", "文曲", "天魁", "天钺", "禄存"],
+    shaxing: ["擎羊", "陀罗", "火星", "铃星", "地空", "地劫"],
+    jisha: {
+      jiLab: "Benefic stars meeting the frame",
+      jiText: "Benefics add help, talent and patrons — Zuo/You bring people, Chang/Qu bring craft, Kui/Yue open doors, Lu Cun steadies money.",
+      shaLab: "Malefic stars meeting the frame",
+      shaText: "Malefics add grit — Yang/Tuo grind, Huo/Ling hasten, Kong/Jie thin the substance; tempered, they forge the bigger frame."
+    },
+    mzLab: "Soul & Body Stars",
+    mzNote: "The Soul star shows the innate bent, the Body star the later course; read their natures below.",
+    emptySec: "No major star sits here — read it through the opposite palace; the real work is running your own side well.",
+    secs: [["官禄", "Career"], ["财帛", "Wealth"], ["夫妻", "Love"]],
     stars: {
-      "紫微": "The Emperor: composed authority — a natural head who prefers to lead.",
-      "天机": "The Strategist: quick, analytical; thrives on planning and change.",
-      "太阳": "The Sun: generous and visible; gives freely and earns renown.",
-      "武曲": "The Treasurer: decisive and hands-on; strong with money matters.",
-      "天同": "The Enjoyer: easygoing optimism; a comfort-seeking peacemaker.",
-      "廉贞": "The Judge: principle entangled with passion; integrity decides outcomes.",
-      "天府": "The Vault: steady and managerial; accumulates and administers.",
-      "太阴": "The Moon: gentle and introspective; strong with writing, property and care.",
-      "贪狼": "The Desirer: versatile and sociable; many talents, many appetites.",
-      "巨门": "The Orator: sharp inquiry and speech; scrutiny invites dispute.",
-      "天相": "The Chancellor: loyal aide and mediator; order and fairness first.",
-      "天梁": "The Guardian: seasoned elder energy; shelter in storms, suited to advisory roles.",
-      "七杀": "The General: pioneering drive; built to break ground, not to hold it.",
-      "破军": "The Reformer: demolish-then-rebuild; opportunity lives inside upheaval."
+      "紫微": { g: "Zi Wei — Earth, the Emperor Star of the central palace; Hua Qi: Nobility.", m: "Leader archetype: high self-regard, big-picture vision, a natural head who dislikes taking orders. Learn humility and people follow." },
+      "天机": { g: "Tian Ji — Wood, the Strategist Star of the Southern Dipper; Hua Qi: Benevolent Ingenuity.", m: "Quick, analytical, multi-talented, a born planner. Prone to overthinking and second-guessing." },
+      "太阳": { g: "Tai Yang — Fire, the Sun, great nobility of the central palace; Hua Qi: Honor.", m: "Radiant and generous: gives publicly, cares widely, prizes reputation. In male charts it speaks for father, husband and sons; watch burnout and pride." },
+      "武曲": { g: "Wu Qu — Metal, the Wealth Star of the Northern Dipper; Hua Qi: Wealth.", m: "Decisive and hands-on with money and execution: acts first, values results over sentiment. Strong, solitary by temperament." },
+      "天同": { g: "Tian Tong — Water, the Blessing Star of the Southern Dipper; Hua Qi: Fortune.", m: "Easygoing, well-liked, young at heart. Watch complacency, low aggression and mood-driven retreat." },
+      "廉贞": { g: "Lian Zhen — Fire, the Prison Star of the Northern Dipper; Hua Qi: Restraint; secondary romance star.", m: "Principle wrestling with desire: intense, charismatic, politically adept. Pitfalls: fixation, love-hate extremes, self-made drama." },
+      "天府": { g: "Tian Fu — Earth, the Marshal Star of the Southern Dipper, the Treasury; Hua Qi: Command.", m: "The steady vault: conservative, inclusive, a natural administrator of money and people. Pairs best with a bold partner." },
+      "太阴": { g: "Tai Yin — Water, the Moon, noble star of the central palace; Hua Qi: Riches; signifies mother, wife, daughters.", m: "Gentle intelligence: refined, feeling, a saver with aesthetic and intuitive gifts. Prone to melancholy, passivity and perfectionism." },
+      "贪狼": { g: "Tan Lang — Wood, the Romance Star of the Northern Dipper; star of appetite and many talents.", m: "Versatile and magnetic: broad interests, strong social play, opportunity-rich. Pitfalls: jack of all trades, indulgence, romantic entanglement." },
+      "巨门": { g: "Ju Men — Water, the Dark Star of the Northern Dipper; Hua Qi: Obscurity.", m: "The investigator-orator: sharp eyes, sharper tongue, research-driven. Pitfalls: suspicion, disputes, trouble brewing quietly." },
+      "天相": { g: "Tian Xiang — Water, the Seal Star, master of the Career palace; Hua Qi: the Seal.", m: "The loyal chancellor: fair, dutiful, polished, a natural mediator. Leans on patrons; learns to own decisions." },
+      "天梁": { g: "Tian Liang — Earth, the Shade Star of the Southern Dipper, the Elder; Hua Qi: Shelter.", m: "The guardian-elder: upright, turns misfortune around, drawn to protect and advise. Pitfalls: preaching, aloofness, shouldering too much." },
+      "七杀": { g: "Qi Sha — Metal, the General Star of the Southern Dipper; its nature is stern authority.", m: "Fierce independence, appetite for risk, relentless execution. Pitfalls: impulsiveness, solitude, dramatic ups and downs." },
+      "破军": { g: "Po Jun — Water, the Ruin Star of the Northern Dipper; Hua Qi: Expenditure.", m: "The vanguard: breaks first, builds after, allergic to stagnation. Pitfalls: impulsive losses, volatile cycles — learn to finish." }
     }
   }
 },
@@ -198,7 +271,7 @@ en: {
 es: {
   jp: {
     title: "Lectura detallada",
-    srcNote: "Citas según ediciones corrientes; la redacción puede variar. Las lecturas son versiones modernas, con fines culturales y de entretenimiento.",
+    srcNote: "Citas según ediciones corrientes; la redacción puede variar. Las lecturas son versiones modernas.",
     sec: { a: "1 · El Maestro del Día", b: "2 · El Mando del Mes", c: "3 · Fuerza y elementos favorables", d: "4 · Los Diez Dioses en los pilares", e: "5 · El ritmo de la suerte", f: "6 · NaYin del año" },
     jishan: { t: "欲知贵贱，先观月令乃提纲。", s: "《渊海子平·继善篇》", ve: "«Para saber rango y valía, lee primero el mando del mes: es el esquema de todo el mapa.»" },
     ditian: { t: "能知衰旺之真机，其于三命之奥，思过半矣。", s: "《滴天髓》", ve: "«Quien comprende el mecanismo de fuerza y debilidad tiene más de la mitad de los misterios del destino.»" },
@@ -259,33 +332,66 @@ es: {
     nayinLine: "NaYin del año: «{ny}» — las sesenta parejas toman sus imágenes de las cosas, según el San Ming Tong Hui."
   },
   zp: {
-    title: "Lectura del mapa",
-    srcLine: "La imaginería de las estrellas sigue el Zi Wei Dou Shu Quan Shu; versiones modernas, con fines culturales.",
-    soulLab: "Palacio del Yo",
+    title: "Lectura dirigida del mapa",
+    srcLine: "Construida desde ESTE mapa — las estrellas realmente sentadas, su brillo y las transformaciones natales, leídas según el saber estelar del Zi Wei Dou Shu Quan Shu. Versiones modernas, sin fórmulas de serie.",
+    soulLab: "Patrón vital",
     mutLab: "Cuatro transformaciones",
     mutNote: "Lu favorece, Quan empodera, Ke ennoblece, Ji obstaculiza — el palacio que la lleva es donde actúa el tema.",
     mutText: { "禄": "Lu: oportunidad y flujo.", "权": "Quan: control e ímpetu.", "科": "Ke: reputación y mentores.", "忌": "Ji: fricción — y dominio a través de ella." },
-    pal: {
-      "命宫": "El Palacio del Yo es tu estilo por defecto: lee sus estrellas y transformaciones.",
-      "官禄": "El palacio de Carrera muestra cómo construyes: sus estrellas son tu estilo de trabajo.",
-      "财帛": "El palacio de Riqueza muestra cómo te llega el dinero: ganado, gestionado o reunido.",
-      "夫妻": "El palacio del Cónyuge esboza la pareja: el sabor del vínculo más cercano."
+    bodyLab: "Palacio del Cuerpo · donde se concentra la vida",
+    bodyNote: "El Palacio del Cuerpo es donde aterriza tu esfuerzo tras la juventud. Cae en",
+    sanheLab: "Trino y oposición · el armazón",
+    sanheNote: "Un palacio se lee junto a sus dos trinos y su oposición; las estrellas que ahí se cruzan moldean cómo se expresa tu energía.",
+    huaLab: "Transformaciones natales · la línea maestra",
+    noStar: "No hay estrella mayor aquí (palacio vacío) — se lee por las del palacio opuesto; los primeros años cambian con el entorno.",
+    emptySec: "No hay estrella mayor aquí — lee por el palacio opuesto; el verdadero trabajo es llevar bien tu propia parte.",
+    secs: [["官禄", "Carrera"], ["财帛", "Riqueza"], ["夫妻", "Amor"]],
+    bright: { "庙": "exaltada — fortalezas en pleno brillo", "旺": "fuerte — flujo pleno", "得": "bien ubicada — expresión fluida", "利": "favorable — expresión estable", "平": "neutra", "不": "debilitada — retenida", "陷": "caída — mandan las carencias; la disciplina lo corrige" },
+    hua: {
+      "禄": "Hua Lu — recursos y flujo entran en este palacio: el lugar de la oportunidad; invierte y haz crecer aquí.",
+      "权": "Hua Quan — mando e ímpetu se concentran aquí: toma la iniciativa, sin atropellar.",
+      "科": "Hua Ke — reputación, mentores y remedio viven aquí: vuelve propicia la adversidad; favorece exámenes, prestigio y redes.",
+      "忌": "Hua Ji — obsesión y fricción atan este palacio: es tu tarea de vida; gestionala, no des vueltas sobre ella."
     },
+    palDomain: {
+      "命宫": "temperamento y patrón vital", "兄弟": "hermanos y cercanos", "夫妻": "matrimonio y pareja", "子女": "hijos, jóvenes y obra creativa",
+      "财帛": "dinero e ingresos", "疾厄": "cuerpo y salud", "迁移": "el mundo exterior y las oportunidades fuera", "仆役": "amigos, subordinados y el público",
+      "官禄": "carrera, logros y estilo de trabajo", "田宅": "propiedad, hogar y cimientos", "福德": "vida interior, gustos y bendición", "父母": "padres, mayores y jefes; también el rostro"
+    },
+    geju: [
+      { name: "Eje Sha-Po-Lang", need: ["七杀", "破军", "贪狼"], scope: "sanfang", g: "Qi Sha, Po Jun y Tan Lang se reúnen en el trino — el eje clásico de convulsión y pioneería.", m: "Vida de grandes vaivenes, alérgica a la quietud; hecho para caminos pioneros, competitivos y transformadores. Gana el audaz, pierde el inquieto." },
+      { name: "Eje Ji-Yue-Tong-Liang", need: ["天机", "太阴", "天同", "天梁"], scope: "sanfang", g: "Tian Ji, Tai Yin, Tian Tong y Tian Liang se reúnen en el trino — los clásicos dicen «Ji Yue Tong Liang hace al funcionario diestro».", m: "Hecho para el dominio profesional y directivo en estructuras estables; la apuesta salvaje no es tu fuerte." },
+      { name: "Zi-Fu en el Palacio del Yo", need: ["紫微", "天府"], scope: "ming", g: "Zi Wei y Tian Fu comparten el Palacio del Yo — emperador y almacén juntos: cuadro noble y opulento.", m: "Mando y administración en un solo cuadro; cuida la vanidad y las decisiones tímidas." },
+      { name: "Fu-Xiang saludando el armazón", need: ["天府", "天相"], scope: "sanfang", g: "Tian Fu y Tian Xiang saludan el Palacio del Yo — el cuadro del sustento estable.", m: "Sustento y padrinos llegan; brillas mejor dentro de grandes plataformas e instituciones." },
+      { name: "Sol y Luna juntos", need: ["太阳", "太阴"], scope: "ming", g: "Tai Yang y Tai Yin comparten el Palacio del Yo — sol y luna en una persona: firmeza y flexibilidad a la vez.", m: "Apto para roles de coordinación; en el amor, tenderás a sopesar ambos lados." },
+      { name: "Eje Huo-Tan", need: ["贪狼", "火星"], scope: "ming", g: "Tan Lang con Huo Xing en el Palacio del Yo — los clásicos dicen «Huo Tan, alta ambición»: fortuna súbita.", m: "Cuadro de explosión por oportunidad: cuando llega, los resultados estallan. Móntala; cuida el desplome." },
+      { name: "Eje Ling-Tan", need: ["贪狼", "铃星"], scope: "ming", g: "Tan Lang con Ling Xing en el Palacio del Yo — fortuna súbita desde rincones inesperados.", m: "Caza aperturas poco comunes; apto para fronteras nuevas — aprende a sostener lo ganado." }
+    ],
+    jixing: ["左辅", "右弼", "文昌", "文曲", "天魁", "天钺", "禄存"],
+    shaxing: ["擎羊", "陀罗", "火星", "铃星", "地空", "地劫"],
+    jisha: {
+      jiLab: "Estrellas benéficas en el armazón",
+      jiText: "Las benéficas suman ayuda, talento y padrinos — Zuo/You traen gente, Chang/Qu traen oficio, Kui/Yue abren puertas, Lu Cun asienta el dinero.",
+      shaLab: "Estrellas malignas en el armazón",
+      shaText: "Las malignas suman fricción — Yang/Tuo desgastan, Huo/Ling aceleran, Kong/Jie adelgazan la sustancia; templadas, forjan el cuadro mayor."
+    },
+    mzLab: "Estrellas del Alma y del Cuerpo",
+    mzNote: "La estrella del Alma muestra la inclinación innata; la del Cuerpo, el rumbo posterior. Lee sus naturalezas abajo.",
     stars: {
-      "紫微": "El Emperador: autoridad serena; lidera de natural.",
-      "天机": "El Estratega: mente rápida, planifica y cambia.",
-      "太阳": "El Sol: generoso y visible; da mucho y gana renombre.",
-      "武曲": "El Tesorero: decidido y práctico; fuerte con el dinero.",
-      "天同": "El Gozador: optimista tranquilo; pacificador comfortista.",
-      "廉贞": "El Juez: principio y pasión entrelazados; la integridad decide.",
-      "天府": "El Almacén: estable y gestor; acumula y administra.",
-      "太阴": "La Luna: suave e introspectivo; escritura, propiedad y cuidado.",
-      "贪狼": "El Deseante: versátil y sociable; muchos talentos y apetitos.",
-      "巨门": "El Orador: indagación y palabra afiladas; el escrutinio trae dispute.",
-      "天相": "El Canciller: aide leal y mediador; orden y justicia primero.",
-      "天梁": "El Guardián: energía de anciano; refugio en la tormenta, consejero.",
-      "七杀": "El General: ímpetu pionero; hecho para abrir camino, no para guardarlo.",
-      "破军": "El Reformador: demoler y reconstruir; oportunidad dentro del cambio."
+      "紫微": { g: "Zi Wei — Tierra, la Estrella Emperador del palacio central; su transformación es la Nobleza.", m: "Arquetipo de líder: alta autoestima, visión amplia, un jefe natural que no acepta órdenes. Aprende humildad y la gente te seguirá." },
+      "天机": { g: "Tian Ji — Madera, la Estrella Estratega de la Osa del Sur; su transformación es la Bondad ingeniosa.", m: "Rápido, analítico, polifacético, planificador nato. Riesgo: pensar de más y dudar." },
+      "太阳": { g: "Tai Yang — Fuego, el Sol, gran nobleza del palacio central; su transformación es el Honor.", m: "Radioso y generoso: da en público, cuida a muchos, valora el renombre. En cartas masculinas habla del padre, el marido, los hijos; cuida el desgaste y el orgullo." },
+      "武曲": { g: "Wu Qu — Metal, la Estrella de la Riqueza de la Osa del Norte; su transformación es la Riqueza.", m: "Decidido y práctico con el dinero y la ejecución: actúa primero, valora resultados sobre sentimientos." },
+      "天同": { g: "Tian Tong — Agua, la Estrella de la Fortuna de la Osa del Sur; su transformación es la Dicha.", m: "Tranquilo, querido, joven de espíritu. Riesgo: comodidad, poca agresividad, retirarse por emociones." },
+      "廉贞": { g: "Lian Zhen — Fuego, la Estrella Prisión de la Osa del Norte; su transformación es la Contención; estrella romántica secundaria.", m: "Principio en pugna con el deseo: intenso, carismático, hábil político. Riesgo: obsesión, amor-odio, drama propio." },
+      "天府": { g: "Tian Fu — Tierra, la Estrella Mariscal de la Osa del Sur, el Almacén; su transformación es el Mando.", m: "El almacén estable: conservador, inclusivo, administrador natural de dinero y gente. Funciona mejor con una pareja audaz." },
+      "太阴": { g: "Tai Yin — Agua, la Luna, noble del palacio central; su transformación es la Riqueza; significa madre, esposa, hijas.", m: "Inteligencia suave: refinado, sensible, ahorrador, con estética e intuición. Riesgo: melancolía, pasividad, perfeccionismo." },
+      "贪狼": { g: "Tan Lang — Madera, la Estrella del Romance de la Osa del Norte; estrella del apetito y los talentos.", m: "Versátil y magnético: intereses amplios, juego social fuerte, muchas oportunidades. Riesgo: hacedor de muchos oficios, excesos, enredos amorosos." },
+      "巨门": { g: "Ju Men — Agua, la Estrella Oscura de la Osa del Norte; su transformación es la Oscuridad.", m: "Investigador-orador: ojo fino, lengua más fina, vocación de estudio. Riesgo: sospecha, disputas, problemas a fuego lento." },
+      "天相": { g: "Tian Xiang — Agua, la Estrella del Sello, señora del palacio de Carrera; su transformación es el Sello.", m: "El canciller leal: justo, cumplidor, pulido, mediador nato. Se apoya en padrinos; aprende a decidir por sí mismo." },
+      "天梁": { g: "Tian Liang — Tierra, la Estrella del Amparo de la Osa del Sur, el Anciano; su transformación es el Amparo.", m: "El guardián mayor: recto, convierte la desgracia en aprendizaje, protege y aconseja. Riesgo: sermonear, altivez, cargar con todo." },
+      "七杀": { g: "Qi Sha — Metal, la Estrella General de la Osa del Sur; su naturaleza es la autoridad severa.", m: "Independencia feroz, apetito de riesgo, ejecución implacable. Riesgo: impulsividad, soledad, altibajos dramáticos." },
+      "破军": { g: "Po Jun — Agua, la Estrella de la Ruina de la Osa del Norte; su transformación es el Gasto.", m: "La vanguardia: rompe primero, construye después, alérgico a la quietud. Riesgo: pérdidas impulsivas, ciclos volátiles — aprende a terminar." }
     }
   }
 },
@@ -294,7 +400,7 @@ es: {
 ar: {
   jp: {
     title: "القراءة المفصلة",
-    srcNote: "الاقتباسات وفق الطبعات الشائعة وقد تتفاوت الصياغة؛ والقراءات صياغات حديثة لأغراض ثقافية وترفيهية.",
+    srcNote: "الاقتباسات وفق الطبعات الشائعة وقد تتفاوت الصياغة؛ والقراءات صياغات حديثة.",
     sec: { a: "١ · سيد اليوم", b: "٢ · أمر الشهر", c: "٣ · القوة والعناصر المحببة", d: "٤ · الآلهة العشرة في الأعمدة", e: "٥ · إيقاع الحظ", f: "٦ · نا يين السنة" },
     jishan: { t: "欲知贵贱，先观月令乃提纲。", s: "《渊海子平·继善篇》", ve: "«لفهم المكانة، اقرأ أولًا أمر الشهر — فهو هيكل الخريطة كلها.»" },
     ditian: { t: "能知衰旺之真机，其于三命之奥，思过半矣。", s: "《滴天髓》", ve: "«من أدرك سر القوة والضعف، ملك أكثر من نصف أسرار المصير.»" },
@@ -355,33 +461,66 @@ ar: {
     nayinLine: "نا يين السنة: «{ny}» — الستون ثنائيًا تأخذ صورها من الأشياء، وفق سان مينغ تونغ هوي."
   },
   zp: {
-    title: "قراءة الخريطة",
-    srcLine: "صور النجوم من أدب نجوم تسي وي دو شو؛ والصياغات حديثة لأغراض ثقافية.",
-    soulLab: "قصر الذات",
+    title: "قراءة موجَّهة للخريطة",
+    srcLine: "مبنية من هذه الخريطة نفسها — النجوم الجالسة فعلًا وبريقها وتحولات الميلاد، وفق أدب النجوم في كتاب تسي وي دو شو تشوان شو. صياغات حديثة، لا قوالب جاهزة.",
+    soulLab: "النمط الحياتي",
     mutLab: "التحولات الأربعة",
     mutNote: "لو تيسير، وتشوان سيطرة، وكه سمعة، وجي احتكاك — والقصر الحامل هو ميدان الموضوع.",
     mutText: { "禄": "لو: فرصة وانسياب.", "权": "تشوان: سيطرة ودافع.", "科": "كه: سمعة ومرشدون.", "忌": "جي: احتكاك — وإتقان عبره." },
-    pal: {
-      "命宫": "قصر الذات هو أسلوبك الافتراضي: اقرأ نجومه وتحولاته.",
-      "官禄": "قصر المهنة يبين كيف تبني — نجومه أسلوب عملك.",
-      "财帛": "قصر الثروة يبين كيف يأتي المال — مكتسبًا أو مدبرًا أو مجمعًا.",
-      "夫妻": "قصر الزوج يرسم الشراكة — نكهة أقرب روابطك."
+    bodyLab: "قصر الجسد · حيث يتركز العمر",
+    bodyNote: "قصر الجسد هو حيث يهبط جهدك بعد الشباب. يقع في",
+    sanheLab: "الثالوث والمقابل · الهيكل",
+    sanheNote: "يُقرأ القصر مع شريكي الثالوث وخصمه؛ والنجوم المتقاطعة هناك تصوغ كيف تتجلّى طاقتك.",
+    huaLab: "تحولات الميلاد · الخط الرئيسي",
+    noStar: "لا نجم كبير جالس هنا (قصر فارغ) — يُقرأ عبر نجوم القصر المقابل؛ والسنوات الأولى تتقلب مع البيئة.",
+    emptySec: "لا نجم كبير هنا — اقرأ عبر القصر المقابل؛ والعمل الحقيقي أن تحسن جانبك أنت.",
+    secs: [["官禄", "المهنة"], ["财帛", "الثروة"], ["夫妻", "الحب"]],
+    bright: { "庙": "مُشرِف — تلمع المزايا كاملة", "旺": "قوي — انسياب كامل", "得": "حسن الموضع — انسياب سلس", "利": "مؤاتٍ — انسياب مستقر", "平": "محايد", "不": "مُضعَف — محجوب", "陷": "ساقط — تتصدر الضعفات؛ والانضباط يقلبه" },
+    hua: {
+      "禄": "هوا لو — الموارد والانسياب يصبّان في هذا القصر: موضع الفرصة؛ استثمر وأنمِ هنا.",
+      "权": "هوا تشوان — السيطرة والدافع يت集中ان هنا: خذ المبادرة، واحذر الساحق.",
+      "科": "هوا كه — الذكر والمريدون والفرج هنا: يقلب الشدة، وينفع الاختبارات والسمعة والعلاقات.",
+      "忌": "هوا جي — الهوس والاحتكاك يقيّدان هذا القصر: درس عمرك؛ أدِرْه ولا تدور في حلقته."
     },
+    palDomain: {
+      "命宫": "المزاج الجوهري ونمط العمر", "兄弟": "الإخوة والأقران", "夫妻": "الزواج والشريك", "子女": "الأبناء والأصاغر والعمل الإبداعي",
+      "财帛": "أسلوب المال والدخل", "疾厄": "الجسد والصحة", "迁移": "الخارج والفرص في الغربة", "仆役": "الأصدقاء والمرؤوسون والعامة",
+      "官禄": "المهنة والإنجاز وأسلوب العمل", "田宅": "العقار والبيت والأساس", "福德": "الحياة الداخلية والذوق والبركة", "父母": "الوالدان والكبار والرؤساء؛ وكذلك الملامح"
+    },
+    geju: [
+      { name: "محور شا-بو-لانغ", need: ["七杀", "破军", "贪狼"], scope: "sanfang", g: "تلتقي تشي شا وبو جون وتان لانغ في الثالوث — المحور الكلاسيكي للهزجة والريادة.", m: "عمر بمدارج كبرى، كاره للسكون؛ صُنع للمسارات الريادية والتنافسية والتحويلية. يفوز الجسور ويخسر القلِق." },
+      { name: "محور جي-يويه-تونغ-ليانغ", need: ["天机", "太阴", "天同", "天梁"], scope: "sanfang", g: "تلتقي تيان جي وتاي ين وتيان تونغ وتيان ليانغ في الثالوث — يقول الكلاسيك «جي يويه تونغ ليانغ يصنع الموظف الماهر».", m: "مصنوع للإتقان المهني والإداري داخل هياكل مستقرة؛ والمقامرة الجامحة ليست حذّاك." },
+      { name: "تسي-فو في قصر الذات", need: ["紫微", "天府"], scope: "ming", g: "تسي وي وتيان فو يتشاركان قصر الذات — الإمبراطور والخزين معًا: محور نبيل غني.", m: "قيادة وإدارة في محور واحد؛ احذر الغرور والقرارات المترددة." },
+      { name: "فو-شيان يحيّون الهيكل", need: ["天府", "天相"], scope: "sanfang", g: "تيان فو وتيان شيان يحيّون قصر الذات — محور الرزق المستقر.", m: "الرزق والمريدون يأتون؛ تتألق أفضل داخل منصات ومؤسسات كبرى." },
+      { name: "الشمس والقمر معًا", need: ["太阳", "太阴"], scope: "ming", g: "تاي يانغ وتاي ين يتشاركان قصر الذات — شمس وقمر في شخص واحد: حزم ومرونة معًا.", m: "ملائم لأدوار التنسيق؛ وفي الحب تميل إلى موازنة الطرفين." },
+      { name: "محور هوو-تان", need: ["贪狼", "火星"], scope: "ming", g: "تان لانغ مع هوو شينغ في قصر الذات — يقول الكلاسيك «هوو تان، طموح عالٍ»: رزق مفاجئ.", m: "محور انفجار بالفرصة: حين تأتي تنفجر النتائج. ارْكَبها؛ واحذر الانهيار." },
+      { name: "محور لينغ-تان", need: ["贪狼", "铃星"], scope: "ming", g: "تان لانغ مع لينغ شينغ في قصر الذات — رزق مفاجئ من جهات غير متوقعة.", m: "يصطاد الفتحات النادرة؛ ملائم للحدود الجديدة — تعلّم أن تحفظ ما كسبت." }
+    ],
+    jixing: ["左辅", "右弼", "文昌", "文曲", "天魁", "天钺", "禄存"],
+    shaxing: ["擎羊", "陀罗", "火星", "铃星", "地空", "地劫"],
+    jisha: {
+      jiLab: "نجوم نافعة تحيط الهيكل",
+      jiText: "النافعة تضيف عونًا وموهبة ومريدين — تسو/يو تجلب الناس، تشانغ/تشو تجلب الصنعة، كوي/يويه يفتحون الأبواب، لو تسون يثبّت المال.",
+      shaLab: "نجوم مؤذية تحيط الهيكل",
+      shaText: "المؤذية تضيف احتكاكًا — يانغ/تو تسلي، هوو/لينغ تعجّل، كونغ/جيه تنقص الجوهر؛ ومع التململ تُطوَّع لتصوغ الهيكل الأكبر."
+    },
+    mzLab: "نجم الروح ونجم الجسد",
+    mzNote: "نجم الروح يبين الميل الفطري، ونجم الجسد المسار اللاحق؛ اقرأ طبيعتيهما أدناه.",
     stars: {
-      "紫微": "الإمبراطور: هيبة رزينة؛ قائد بالفطرة.",
-      "天机": "الاستراتيجي: عقل سريع يحب التخطيط والتغيير.",
-      "太阳": "الشمس: كريم ظاهر؛ يعطي ويكسب الذكر.",
-      "武曲": "الخازن: حازم عملي؛ قوي بشؤون المال.",
-      "天同": "المستمع: تفاؤل هادئ؛ مصالح بيّنة طلب راحة.",
-      "廉贞": "القاضي: مبدأ متشابك بالعاطفة؛ والنزاهة تحسم.",
-      "天府": "الخزين: ثابت إداري؛ يجمع ويدير.",
-      "太阴": "القمر: رقيق متأمل؛ قوة في الكتابة والعقار والرعاية.",
-      "贪狼": "نجم المواهب: متعدد المواهب اجتماعي، وشهية واسعة.",
-      "巨门": "الخِطابي: سؤال ولسان حادان؛ والتدقيق يستدعي الجدل.",
-      "天相": "المستشار: وزير وفيّ ووساط؛ النظام والإنصاف أولًا.",
-      "天梁": "الجَلِي: طاقة شيخ محنّكة؛ مأوى في العواصف، وموضعه المشورة.",
-      "七杀": "الجنرال: دافع سابغ؛ صُنع لفتح الطريق لا لحرسه.",
-      "破军": "الإصلاحي: هدم ثم بناء؛ وفي التقلب فرصة."
+      "紫微": { g: "تسي وي — تراب، نجم الإمبراطور للقصر المركزي؛ تحوله: النُّبل.", m: "أركيتيب القائد: ثقة ذات عالية، رؤية واسعة، رئيس بالفطرة لا يقبل الأوامر. تعلّم التواضع يتبعك الناس." },
+      "天机": { g: "تيان جي — خشب، نجم الاستراتيجي للدارة الجنوبية؛ تحوله: الود الخيّاط.", m: "سريع تحليلي متعدد المواهب مخطط بالفطرة. الخطر: الإفراط في التفكير والتردد." },
+      "太阳": { g: "تاي يانغ — نار، الشمس، عظيم النبل للقصر المركزي؛ تحوله: الشرف.", m: "مشعّ كريم: يعطي علنًا، يرعى الكثيرًا، يقدّر الذكر. في خرائط الرجال يتحدث عن الأب والزوج والأبناء؛ احذر الإنهاك والكِبر." },
+      "武曲": { g: "وو تشو — معدن، نجم الثروة للدارة الشمالية؛ تحوله: الثروة.", m: "حازم عملي في المال والتنفيذ: يفعل أولًا، ويقدّر النتائج على المشاعر. طبع قوي منعزل." },
+      "天同": { g: "تيان تونغ — ماء، نجم البركة للدارة الجنوبية؛ تحوله: السعادة.", m: "ودود محبوب فتي القلب. الخطر: الاسترخاء، ضعف الحسم، الانسحاب العاطفي." },
+      "廉贞": { g: "ليان تشن — نار، نجم السجن للدارة الشمالية؛ تحوله: الكف؛ ونجم رومانسي ثانوي.", m: "مبدأ يتشابك مع الرغبة: حادّ كاريزمي ذو ذكاء سياسي. الخطر: الهوس، الحب-الكراهية، الدراما ذاتية الصنع." },
+      "天府": { g: "تيان فو — تراب، النجم المارشال للدارة الجنوبية، الخزين؛ تحوله: القيادة.", m: "الخزين الثابت: محافظ شامل، مدير فطري للمال والناس. يزدهر مع شريك جسور." },
+      "太阴": { g: "تاي ين — ماء، القمر، نبيل القصر المركزي؛ تحوله: الغنى؛ يرمز للأم والزوجة والبنات.", m: "ذكاء رقيق: مصقول عاطفي، مدخّر، بذائقة وحدس. الخطر: الحزن، السلبية، الكمالية." },
+      "贪狼": { g: "تان لانغ — خشب، نجم الرومانسية للدارة الشمالية؛ نجم الشهية والمواهب.", m: "متعدد جاذب: اهتمامات واسعة، حضور اجتماعي قوي، فرص كثيرة. الخطر: حِرَف بلا إتقان، إفراطات، تشابك عاطفي." },
+      "巨门": { g: "جيو من — ماء، النجم المظلم للدارة الشمالية؛ تحوله: الظلمة.", m: "الباحث-الخاطب: عين دقيقة ولسان أحدث، شغف بالبحث. الخطر: الريبة، الجدل، ما يتدبر على مهل." },
+      "天相": { g: "تيان شيان — ماء، نجم الختم، سيد قصر المهنة؛ تحوله: الختم.", m: "الوزير الوفي: عادل ملتزم مصقول وسيط فطري. يستند إلى المرضى؛ ويتعلم أن يقرر بنفسه." },
+      "天梁": { g: "تيان ليانغ — تراب، نجم الظل للدارة الجنوبية، الشيخ؛ تحوله: الظل.", m: "الولي الشيخ: مستقيم يحوّل الشدة، يرعى وينصح. الخطر: المواعظ، الرفعة، حَمل كل شيء." },
+      "七杀": { g: "تشي شا — معدن، نجم الجنرال للدارة الجنوبية؛ طبيعته السلطة الصارمة.", m: "استقلال جسور، شهية مخاطرة، تنفيذ لا يرحم. الخطر: الاندفاع، العزلة، مدارج صاعدة هابطة." },
+      "破军": { g: "بو جيون — ماء، نجم الخراب للدارة الشمالية؛ تحوله: الإنفاق.", m: "الطليعة: يكسر أولًا ويبني بعد، حديث القصور. الخطر: خسائر اندفاعية ودورات متقلبة — تعلّم أن تختم." }
     }
   }
 },
@@ -451,33 +590,67 @@ ja: {
     nayinLine: "年命の納音は「{ny}」― 六十干支を物象に喻えたものです（三命通会による）。"
   },
   zp: {
-    title: "命盤の読み方",
-    srcLine: "星のイメージは『紫微斗数全書』の諸星論に拠る。解説は現代語の参考訳です。",
-    soulLab: "命宮",
+    title: "命盤の個別解読",
+    srcLine: "この命盤に実際に坐する星・その明暗・生年四化から、『紫微斗数全書』の星性に基づいて読み解きます。汎用の定型文ではなく、盤ごとの個別解読（現代語）です。",
+    soulLab: "命格の基調",
     mutLab: "四化",
     mutNote: "禄は恵み、権は掌握、科は名声、忌は試練。化のある宮が人生の焦点。",
     mutText: { "禄": "化禄：チャンスと流れ。", "权": "化権：掌握と推進力。", "科": "化科：名声と恩人。", "忌": "化忌：試練と、それを越えた達成。" },
-    pal: {
-      "命宮": "命宮の主星はあなたの既定の OS。星と四化を読めば基本スタイルが分かる。",
-      "官祿": "官祿宮は仕事の型。主星がそのまま勤め方と成果への道。",
-      "財帛": "財帛宮はお金の入り方。貯める型か、動かす型か、技で稼ぐ型か。",
-      "夫妻": "夫妻宮はパートナーシップの趣。近しい絆の相性の色。"
+    bodyLab: "身宮 · 後天の重心",
+    bodyNote: "身宮は若き日を過ぎたのち、あなたの力の注ぐ先。その落宮は",
+    sanheLab: "三方四正 · 格局の補助",
+    sanheNote: "命宮は三合の二宮と対宮と併せて読む。そこに会する星が、エネルギーの現れ方を形づくる。",
+    huaLab: "生年四化 · 人生の主線",
+    noStar: "この宮に正曜なし（空宮）。対宮の星を借りて論じる——若い頃の変転が多く、環境の影響を受けやすい。",
+    emptySec: "この宮に正曜なし。対宮や借星で論じ、後天の研鑽が要る。",
+    secs: [["官禄", "仕事"], ["财帛", "金運"], ["夫妻", "恋愛"]],
+    bright: { "庙": "廟旺——星の長所が全開", "旺": "旺——エネルギー満ち、力強い", "得": "得地——自在に発揮", "利": "得利——安定して発揮", "平": "平——中性的", "不": "不得地——長所が抑えられる", "陷": "陥落——短所が支配。鍛錬で変える" },
+    hua: {
+      "禄": "化禄——この宮に財禄と順風が流れ込む。機会の座。ここで育てよ。",
+      "权": "化権——主導権と推進力がこの宮に集う。リードせよ。強引は禁物。",
+      "科": "化科——名声・恩人・救済はこの宮に。逆境を好転させ、試験・評判・人脈に効く。",
+      "忌": "化忌——執着と障害がこの宮に絡む。生涯の課題。丁寧に管理し、深追いするな。"
     },
+    palDomain: {
+      "命宫": "気質と一生の格局", "兄弟": "兄弟姉妹と親しい仲間", "夫妻": "結婚とパートナー", "子女": "子・後輩・創作物",
+      "财帛": "お金の入り方と管理", "疾厄": "身体と健康", "迁移": "外出・対外的舞台と機縁", "仆役": "友人・部下・大衆との縁",
+      "官禄": "仕事・功名・やり方", "田宅": "不動産・住まい・土台", "福德": "内面・趣味と福", "父母": "両親・長上・上司。相貌も"
+    },
+    geju: [
+      { name: "殺破狼格", need: ["七杀", "破军", "贪狼"], scope: "sanfang", g: "七殺・破軍・貪狼が三方に会す。古に『殺破狼』と称す。変動と開拓の局。", m: "人生は大きく動き、現状維持が苦手。開拓・競争・変革の道に向く。大胆さが勝ち、浮つきが負け。" },
+      { name: "機月同梁格", need: ["天机", "太阴", "天同", "天梁"], scope: "sanfang", g: "機・月・同・梁が四方に会す。古訣に『機月同梁作吏人』。", m: "安定した組織内の専門職・管理職に向く。突発的な起業冒険は得意ではない。" },
+      { name: "紫府同宮格", need: ["紫微", "天府"], scope: "ming", g: "紫微と天府が命宮を共守。帝座と庫星が同宮する尊貴富厚の局。", m: "指導気質と統率力を兼ね、格局は高い。見栄と慎重すぎる決断に注意。" },
+      { name: "府相朝垣格", need: ["天府", "天相"], scope: "sanfang", g: "天府と天相が命宮に会照。『府相朝垣』といい、食禄安穏の局。", m: "衣食豊かで貴人多し。大きなプラットフォーム・組織の中で輝く型。" },
+      { name: "日月同臨格", need: ["太阳", "太阴"], scope: "ming", g: "太陽と太陰が命宮を共守。日月同臨、陰陽を兼ねる。", m: "剛柔を併せ持ち、調整役に向く。恋愛では両天秤をかけやすい。" },
+      { name: "火貪格", need: ["贪狼", "火星"], scope: "ming", g: "貪狼と火星が同宮。古訣に『火貪志気高』。横発の機。", m: "機会一到で結果が爆発する型。勢いに乗れ。急上昇急降下に注意。" },
+      { name: "鈴貪格", need: ["贪狼", "铃星"], scope: "ming", g: "貪狼と鈴星が同宮。思いがけぬ機会と横発を同じくする。", m: "穴場を捉えるのが上手。新領域に向く——勝った分を守ることを覚えよ。" }
+    ],
+    jixing: ["左辅", "右弼", "文昌", "文曲", "天魁", "天钺", "禄存"],
+    shaxing: ["擎羊", "陀罗", "火星", "铃星", "地空", "地劫"],
+    jisha: {
+      jiLab: "六吉星の会照",
+      jiText: "吉星の会照は助力・才芸・贵人を意味する。輔弼は人、昌曲は才、魁鉞は門を開き、禄存は財を安定させる。",
+      shaLab: "六煞星の会照",
+      shaText: "煞星は競争と研摩——羊陀は性を磨き、火鈴は急かし、空劫は実りを削る。煞は凶ではなく、鍛えれば大きな格局を為す。"
+    },
+    mzLab: "命主 · 身主",
+    mzNote: "命主星は生来の性質を、身主星は後天の行方を示す。下にその性を読む。",
+    emptySec: "この宮に正曜なし。対宮や借星で論じ、後天の研鑽が要る。",
     stars: {
-      "紫微": "帝星：落ち着いた威厳の生まれながらのリーダー。",
-      "天機": "軍師星：頭の回転が速く、計画と変化に強い。",
-      "太陽": "太陽星：博愛で目立ち、与えて名を得る。",
-      "武曲": "財星：果断で実務。金銭の執行に強い。",
-      "天同": "福星：おおらかで楽天、争わない調整者。",
-      "廉貞": "情と原則が絡む星。節度が成否を分ける。",
-      "天府": "庫星：安定した管理型。蓄えと運営の名手。",
-      "太陰": "太陰星：繊細で内省。文筆・不動産・ケアに強い。",
-      "貪狼": "多才の星：趣味と縁が広く、社交に強い。",
-      "巨門": "口才の星：鋭い研究心と口才。探求とともに論争も呼ぶ。",
-      "天相": "印星：忠厚な補佐役。生来のまとめ役。",
-      "天梁": "蔭星：年長者の風格。荒波を庇い、相談役に向く。",
-      "七殺": "将星：開拓の突進力。守るより切り拓く型。",
-      "破軍": "耗星：壊して新たに築く。変動の中に機会。"
+      "紫微": { g: "紫微は土、中天の尊星にして帝座。化気は「尊」。", m: "リーダー型：自尊心が高く、視座が大きく、生まれながらの先頭。命令されるより命じたい。謙虚を学べば人は従う。" },
+      "天机": { g: "天機は木、南斗の益算の星。化気は「善」。", m: "軍師型：頭の回転が速く、多才で計画上手。考えすぎと躊躇いが癖。" },
+      "太阳": { g: "太陽は火、中天の大貴。化気は「貴」。", m: "放射的で博愛：公に与え、広く世話を焼き、名声を重んじる。男命では父・夫・息子に応じ、燃え尽きと虚栄に注意。" },
+      "武曲": { g: "武曲は金、北斗の財星。化気は「財」。", m: "お金と実行に果断：まず動き、結果を感情より重んじる。剛直で孤高の気質。" },
+      "天同": { g: "天同は水、南斗の福星。化気は「福」。", m: "おおらかで人望があり、心は若い。注意：気怠さ、決断力の不足、感情による撤退。" },
+      "廉贞": { g: "廉貞は火、北斗の囚星。化気は「囚」。次桃花。", m: "原則と欲望が交差する星：情が濃く、カリスマと手腕。注意：凝り固まり、愛憎の極端、自作のドラマ。" },
+      "天府": { g: "天府は土、南斗の令星にして庫星。化気は「令」。", m: "安定の庫星：保守的で包容力があり、金と人の運用の名手。大胆な相方と組むと活きる。" },
+      "太阴": { g: "太陰は水、中天の貴星。化気は「富」。母・妻・娘を象る。", m: "柔らかな知性：繊細で情が深く、貯め上手、審美眼と直感。注意：憂い、受身、完璧主義。" },
+      "贪狼": { g: "貪狼は木、北斗の桃花星。欲望と多才の星。", m: "多才で魅力的：趣味も縁も広く、機会に富む。注意：器用貧乏、享楽、恋の絡み。" },
+      "巨门": { g: "巨門は水、北斗の暗星。化気は「暗」。", m: "探究の雄弁家：観察眼鋭く、研究心が強い。注意：疑い、口論、静かに進む波紋。" },
+      "天相": { g: "天相は水、斗中の印星にして官禄主。化気は「印」。", m: "忠厚な補佐役：公正で勤勉、洗練され、生来の調整者。頼りがち——自ら決断することを学ぶ。" },
+      "天梁": { g: "天梁は土、南斗の蔭星にして老人星。化気は「蔭」。", m: "守護の長老：清廉にして災いを転じる。人を庇い、助言したがる。注意：説教くささ、高慢、引き受けすぎ。" },
+      "七杀": { g: "七殺は金、南斗の将星。その性は厳粛な権威。", m: "猛然たる独立と冒険、遂行は鉄火。注意：衝動、孤高、激しい浮き沈み。" },
+      "破军": { g: "破軍は水、北斗の耗星。化気は「耗」。", m: "先鋒の星：先に壊し、後に築く。停滞が天敵。注意：衝動的な損失、変転の繰り返し——終わらせる技術を。" }
     }
   }
 }

@@ -149,6 +149,7 @@ table.t th{background:#f0e6cf;color:var(--ink);text-align:left}
 table.t th,table.t td{padding:10px 14px;border-bottom:1px solid var(--line);font-size:.95rem}
 table.t tr:last-child td{border-bottom:none}
 .scrollx{overflow-x:auto}
+table.t.pal th:first-child,table.t.pal td:first-child{white-space:nowrap;width:1%}
 
 /* ---------- faq / article ---------- */
 details.faq{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin-bottom:10px}

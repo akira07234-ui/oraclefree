@@ -11,8 +11,8 @@ function sources(items, lang) {
   var Z = lang === "zh";
   return '<section class="sources"><h2>' + (Z ? "经典出处" : "Classical Sources") + "</h2><ul>" +
     items.map(function (it) { return "<li><b>" + it[0] + "</b>" + it[1] + "</li>"; }).join("") + "</ul>" +
-    '<p class="varnote">' + (Z ? "引文依通行本，个别字句或因版本而异；本站解读为现代白话转述，供文化学习与娱乐参考。"
-      : "Quotations follow popular printed editions; wording may vary slightly between editions. Our readings are modern plain-language renderings, for cultural learning and entertainment.") + "</p></section>";
+    '<p class="varnote">' + (Z ? "引文依通行本，个别字句或因版本而异；本站解读为现代白话转述。"
+      : "Quotations follow popular printed editions; wording may vary slightly between editions. Our readings are modern plain-language renderings.") + "</p></section>";
 }
 
 var ARTICLES = {
@@ -38,7 +38,7 @@ var ARTICLES = {
         cite("人禀天地，命属阴阳；生居覆载之内，尽在五行之中。", "《渊海子平·继善篇》（旧题宋·徐大升辑）", "\"Humans are endowed by heaven and earth; life belongs to yin and yang — within the covering of the cosmos, all rests within the five elements.\" — Yuanhai Ziping, Ji Shan Pian"),
         cite("以日为主，年为根，月为苗，日为花，时为果。", "《渊海子平·论日为主》", "\"Take the day stem as the master: the year is the root, the month the sprout, the day the flower, the hour the fruit.\" — Yuanhai Ziping, On the Day as Master") +
         sources([["《渊海子平》", "：旧题宋·徐大升据唐·李虚中、五代徐子平之法辑成，子平命理第一部集成之作。"], ["《三命通会》", "：明·万民英撰（1596 年成书），《四库全书》收录的命理百科全书。"], ["《周易》", "：群经之首，卦爻辞成于西周至春秋。"]], "zh") +
-        '<p class="disclaimer">BaZi is a traditional interpretive art, presented here for cultural and entertainment purposes. Character — not the chart — is the author of destiny.</p>' +
+        '<p class="disclaimer">BaZi is a traditional interpretive art, presented here for Character — not the chart — is the author of destiny.</p>' +
         "</article>";
       }
     },
@@ -63,7 +63,7 @@ var ARTICLES = {
         cite("人禀天地，命属阴阳；生居覆载之内，尽在五行之中。", "《渊海子平·继善篇》（旧题宋·徐大升辑）"),
         cite("以日为主，年为根，月为苗，日为花，时为果。", "《渊海子平·论日为主》") +
         sources([["《渊海子平》", "：旧题宋·徐大升据唐·李虚中、五代徐子平之法辑成，子平命理第一部集成之作。"], ["《三命通会》", "：明·万民英撰（1596 年成书），《四库全书》收录的命理百科全书。"], ["《周易》", "：群经之首，卦爻辞成于西周至春秋。"]], "zh") +
-        '<p class="disclaimer">八字是一门传统解读艺术，本站内容仅供文化娱乐参考；性格与选择，才是命运的主笔。</p>' +
+        '<p class="disclaimer">八字是一门传统解读艺术，本站内容性格与选择，才是命运的主笔。</p>' +
         "</article>";
       }
     }
@@ -87,7 +87,7 @@ var ARTICLES = {
         "<h2>A note on sources</h2>" +
         "<p>The hour system itself is ancient: Tang-dynasty masters like Li Xuzhong (李虚中, 761–813) already read destinies from birth timings, and the five-dynasties master Xu Ziping moved the analysis to the day pillar — but all of them worked from sundial and water-clock time, not administrative clocks. True solar correction is therefore not an innovation but a return to how the tradition always read time.</p>" +
         sources([["李虚中", "：唐代命理先驱，《韩昌黎文集》载韩愈为其作墓志铭，称其推命「百不失一二」。"], ["徐子平", "：五代宋初术士，改以日干为核心，后世遂称此学为「子平术」。"], ["《渊海子平》", "：子平法的第一部集成著作，旧题宋·徐大升辑。"]], "en") +
-        '<p class="disclaimer">For cultural and entertainment reference. When in doubt about your birth time, family recollection and birth records beat any formula.</p>' +
+        '<p class="disclaimer">When in doubt about your birth time, family recollection and birth records beat any formula.</p>' +
         "</article>";
       }
     },
@@ -108,7 +108,7 @@ var ARTICLES = {
         "<h2>源流小考</h2>" +
         "<p>时辰体系古已有之：唐代李虚中（761–813）已用出生时辰论命，五代徐子平改为以日干为核心——但他们用的都是日晷与漏刻之「真时」，而非行政钟表。真太阳时校正并非创新，而是回到这门学问阅读时间的原始方式。</p>" +
         sources([["李虚中", "：唐代命理先驱，《韩昌黎文集》载韩愈为其作墓志铭，称其推命「百不失一二」。"], ["徐子平", "：五代宋初术士，改以日干为核心，后世遂称此学为「子平术」。"], ["《渊海子平》", "：子平法的第一部集成著作，旧题宋·徐大升辑。"]], "zh") +
-        '<p class="disclaimer">仅供文化娱乐参考；出生时间拿不准时，家人的记忆和出生证明比任何公式都可靠。</p>' +
+        '<p class="disclaimer">出生时间拿不准时，家人的记忆和出生证明比任何公式都可靠。</p>' +
         "</article>";
       }
     }
@@ -136,7 +136,7 @@ var ARTICLES = {
         "<h2>From the classics</h2>" +
         cite("手持杯珓导我掷，云此最吉余难同。", "唐·韩愈《谒衡岳庙遂宿岳寺题门楼》", "\"Handing me the cup-divination blocks, he bade me throw them: 'This is the most auspicious — the rest cannot compare.'\" — Han Yu (768–824), poem at Mount Heng's temple. The verse records block divination as a living practice in Tang China.") +
         sources([["韩愈《谒衡岳庙》", "：唐代诗文中的杯珓问神实录，说明此俗至少已有一千二百年历史。"], ["杯珓", "：即筊杯古称，宋以后「筊」「珓」混用，闽南语今仍称「跋杯」（poa̍h-poe），英语 Poe 即由此音译。"]], "en") +
-        '<p class="disclaimer">Presented for cultural and entertainment purposes.</p>' +
+        '' +
         "</article>";
       }
     },
@@ -161,7 +161,7 @@ var ARTICLES = {
         "<h2>古籍实录</h2>" +
         cite("手持杯珓导我掷，云此最吉余难同。", "唐·韩愈《谒衡岳庙遂宿岳寺题门楼》") +
         sources([["韩愈《谒衡岳庙》", "：唐代诗文中的杯珓问神实录，说明此俗至少已有一千二百年历史。"], ["杯珓", "：即筊杯古称，宋以后「筊」「珓」混用，闽南语今仍称「跋杯」（poa̍h-poe），英语 Poe 即由此音译。"]], "zh") +
-        '<p class="disclaimer">内容仅供文化传统研究与娱乐参考。</p>' +
+        '' +
         "</article>";
       }
     }
@@ -189,7 +189,7 @@ var ARTICLES = {
         "<h2>On the text's origin</h2>" +
         "<p>Unlike BaZi or the I Ching, the Guanyin oracle has no single ancient \"original\": the hundred signs circulated as temple lot-book texts from the Southern Song onward, with regional temples preserving slightly different wordings. Our edition follows the widely printed popular version, and every reading on this site is a modern plain-language rendering of it — offered as cultural heritage, not as the voice of any authority.</p>" +
         sources([["观音灵签通行本", "：明以来江南、闽粤庙宇流传的百签签谱，各寺版本互有出入。"], ["《周易》", "：若求有确切古籍出处的占法，六十四卦卦辞均出自《周易》古经（见我们的 I Ching 各卦页）。"]], "en") +
-        '<p class="disclaimer">Presented for cultural and entertainment purposes.</p>' +
+        '' +
         "</article>";
       }
     },
@@ -214,7 +214,7 @@ var ARTICLES = {
         "<h2>关于文本来源</h2>" +
         "<p>与八字、周易不同，观音灵签并没有一部单一的「古籍原典」：百签签谱自南宋起在庙宇间流传，各地寺院版本互有出入。本站采用流传最广的通行本，并如实说明——签诗是传统民间文本，本站解读为现代白话转述，而非任何「权威断言」。</p>" +
         sources([["观音灵签通行本", "：明以来江南、闽粤庙宇流传的百签签谱，各寺版本互有出入。"], ["《周易》", "：若求有确切古籍出处的占法，六十四卦卦辞均出自《周易》古经（见本站各卦页）。"]], "zh") +
-        '<p class="disclaimer">内容仅供文化传统研究与娱乐参考。</p>' +
+        '' +
         "</article>";
       }
     }
@@ -235,10 +235,17 @@ var ARTICLES = {
         "<h2>Your first reading</h2>" +
         "<p>Start with three palaces: the Self palace describes your operating style; the Career palace shows how you build; the Spouse palace sketches partnership. Notice which major stars sit there and whether any carry a transformation — Ji on a Career star says the work path has friction to manage, Lu on a Wealth star says resources flow when you show up.</p>" +
         "<p>Cast your chart free on our <a href='/ziwei/'>Zi Wei Dou Shu calculator</a> — twelve palaces, major and minor stars, transformations, soul and body stars, in English or Chinese.</p>" +
+        "<h2>How to read the palaces</h2>" +
+        "<p><b>Self palaces vs. other palaces.</b> Life, Wealth, Career, Property, Fortune and Health are 'self palaces' — they speak to your own pattern, money, work, home, spirit and body. Siblings, Spouse, Children, Travel, Friends and Parents are 'other palaces' — they speak to the six relations. An auspicious star in a self palace benefits you directly; in an other palace it often shows up through a relative.</p>" +
+        "<p><b>The trine and opposition (三方四正).</b> No palace is read alone: take it with its trine (the other two palaces in its earthly-branch group — 申子辰 / 寅午戌 / 巳酉丑 / 亥卯未) and its opposition (the clashing branch). If the Life Palace sits at 子, its trine is 申 and 辰 and its opposition 午 — the four together form the full picture.</p>" +
+        "<p><b>Four things per palace:</b> ① the major star sets the frame (exalted or fallen); ② auspicious and malefic minor stars raise or lower it; ③ the four transformations (Lu, Quan, Ke, Ji) show which way it moves; ④ the trine and opposition meet or break it.</p>" +
+        "<h2>Soul &amp; Body stars</h2>" +
+        "<p>Once the Life Palace is fixed, two stars govern the self: the <b>Soul star (命主)</b> is set by the Life Palace's branch; the <b>Body star (身主)</b> by the birth-year branch. The table follows the Complete Book's rule:</p>" +
+        "<div class='scrollx'><table class='t'><tr><th>Branch</th><th>Soul star (Life Palace)</th><th>Body star (birth year)</th></tr>" + (function () { var B = ["子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥"]; var P = ["Zi","Chou","Yin","Mao","Chen","Si","Wu","Wei","Shen","You","Xu","Hai"]; var M = {子:"Tanlang",丑:"Jumen",寅:"Lucun",卯:"Wenqu",辰:"Lianzhen",巳:"Wuqu",午:"Po Jun",未:"Wuqu",申:"Lianzhen",酉:"Wenqu",戌:"Lucun",亥:"Jumen"}; var S = {子:"Huoxing",丑:"Tianxiang",寅:"Tianliang",卯:"Tiantong",辰:"Wenchang",巳:"Tianji",午:"Huoxing",未:"Tianxiang",申:"Tianliang",酉:"Tiantong",戌:"Wenchang",亥:"Tianji"}; return B.map(function (b, i) { return "<tr><td><b>" + b + " " + P[i] + "</b></td><td>" + M[b] + "</td><td>" + S[b] + "</td></tr>"; }).join(""); })() + "</table></div>" +
         "<h2>From the classics</h2>" +
         cite("学问之难，莫难于星命之学；而星命之学，莫难于紫微斗数。", "《紫微斗数全书·太微赋》（题宋·陈抟撰，明·罗洪先辑）", "\"Of all learning, none is harder than the study of fate by the stars; and among star-fate studies, none is harder than Zi Wei Dou Shu.\" — Tai Wei Fu, in the Zi Wei Dou Shu Quan Shu, the tradition's foundational compilation.") +
         sources([["《紫微斗数全书》", "：题宋·陈抟（希夷先生）撰、明·罗洪先辑刊，紫微斗数通行祖本，安星诀与诸星论皆出于此。"], ["门派说明", "：紫微斗数流传中形成三合、飞星、中州派等分支，四化表等细节各派略有出入；本站采用 iztro 开源库的主流约定，属通行解法之一。"]], "en") +
-        '<p class="disclaimer">Presented for cultural and entertainment purposes.</p>' +
+        '' +
         "</article>";
       }
     },
@@ -256,10 +263,17 @@ var ARTICLES = {
         "<h2>拿到命盘先看三处</h2>" +
         "<p>先看命宫（你的默认操作系统），再看官禄宫（你怎么建功），最后看夫妻宫（亲密关系的画风）。留意宫内主星是否带化：官禄宫主星化忌，说明事业路上有需要经营的摩擦；财帛宫化禄，说明肯入场就有资源。</p>" +
         "<p>用我们的<a href='/zh/ziwei/'>免费紫微排盘</a>立即起盘：十二宫主副星、化曜、命主身主，中英文都支持。</p>" +
+        "<h2>十二宫怎么读</h2>" +
+        "<p><b>先分我宫、他宫。</b>命宫、财帛、官禄、田宅、福德、疾厄为「我宫」，主自身的格局、财禄、事业、家业、精神与体质；兄弟、夫妻、子女、迁移、交友、父母为「他宫」，主六亲与人我关系。断一宫吉凶，先看它落我宫还是他宫——吉星入我宫其福归己，入他宫多应验在六亲身上。</p>" +
+        "<p><b>再看三方四正。</b>单看一宫不够，须连同它的三方（地支三合：申子辰、寅午戌、巳酉丑、亥卯未中同局的另两宫）与对宫（地支相冲之宫）合参，是为「三方四正」。如命宫落子，三方为同属水局的申、辰二宫，对宫为相冲的午——四者合看，方成一宫完整格局。主星、辅星、四化皆以三方四正论其会照与冲破。</p>" +
+        "<p><b>每宫看四件事：</b>① 主星定格局（十四正曜入庙旺得地则吉、落陷失所则减）；② 辅星煞星增减吉凶（左辅右弼文昌文曲为佐，擎羊陀罗火星铃星地空地劫为扰）；③ 四化（化禄化权化科化忌）定该宫「动」的方向与得失；④ 三方四正的会照冲破。四者合参，一宫之断方成。</p>" +
+        "<h2>命主星 · 身主星</h2>" +
+        "<p>安命之后，另取二星为一身主宰：<b>命主星</b>依命宫所在地支而定，主一生性分之归属；<b>身主星</b>依生年地支而定，主后天行藏之所系。下表依《全书》安命主、身主诀：</p>" +
+        "<div class='scrollx'><table class='t'><tr><th>地支</th><th>命主星（命宫落此支）</th><th>身主星（生年落此支）</th></tr>" + (function () { var B = ["子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥"]; var A = {子:"鼠",丑:"牛",寅:"虎",卯:"兔",辰:"龙",巳:"蛇",午:"马",未:"羊",申:"猴",酉:"鸡",戌:"狗",亥:"猪"}; var M = {子:"贪狼",丑:"巨门",寅:"禄存",卯:"文曲",辰:"廉贞",巳:"武曲",午:"破军",未:"武曲",申:"廉贞",酉:"文曲",戌:"禄存",亥:"巨门"}; var S = {子:"火星",丑:"天相",寅:"天梁",卯:"天同",辰:"文昌",巳:"天机",午:"火星",未:"天相",申:"天梁",酉:"天同",戌:"文昌",亥:"天机"}; return B.map(function (b) { return "<tr><td><b>" + b + "（" + A[b] + "）</b></td><td>" + M[b] + "</td><td>" + S[b] + "</td></tr>"; }).join(""); })() + "</table></div>" +
         "<h2>古籍原文</h2>" +
         cite("学问之难，莫难于星命之学；而星命之学，莫难于紫微斗数。", "《紫微斗数全书·太微赋》（题宋·陈抟撰，明·罗洪先辑）") +
         sources([["《紫微斗数全书》", "：题宋·陈抟（希夷先生）撰、明·罗洪先辑刊，紫微斗数通行祖本，安星诀与诸星论皆出于此。"], ["门派说明", "：紫微斗数流传中形成三合、飞星、中州派等分支，四化表等细节各派略有出入；本站采用 iztro 开源库的主流约定，属通行解法之一。"]], "zh") +
-        '<p class="disclaimer">内容仅供文化传统研究与娱乐参考。</p>' +
+        '' +
         "</article>";
       }
     }
@@ -288,7 +302,7 @@ var ARTICLES = {
         cite("五行者，往来乎天地之间而不穷者也，故谓之行。", "《渊海子平·论五行》", "\"The five phases move to and fro between heaven and earth without end — therefore they are called 'movements' (xing).\" — Yuanhai Ziping, On the Five Phases."),
         cite("能知衰旺之真机，其于三命之奥，思过半矣。", "《滴天髓》（旧题宋·京图撰，明·刘基注）", "\"Grasp the true mechanism of strength and weakness, and you have half of the mysteries of destiny.\" — Di Tian Sui, the classic that made strength-weakness analysis the heart of Zi Ping method. Our simplified strength reading is exactly a first step down this road.") +
         sources([["《渊海子平》", "：子平法第一部集成著作，旧题宋·徐大升辑。"], ["《滴天髓》", "：旧题宋·京图撰、明·刘基注，清·任铁樵作疏后大行于世，论旺衰喜用之祖。"], ["《穷通宝鉴》", "：原名《栏江网》，清·余春台编，按月令取调候用神之经典（本站简化模型暂未纳入调候法）。"], ["《三命通会》", "：明·万民英撰（1596），《四库全书》收录的命理百科。"]], "en") +
-        '<p class="disclaimer">Presented for cultural and entertainment purposes.</p>' +
+        '' +
         "</article>";
       }
     },
@@ -314,7 +328,7 @@ var ARTICLES = {
         cite("五行者，往来乎天地之间而不穷者也，故谓之行。", "《渊海子平·论五行》"),
         cite("能知衰旺之真机，其于三命之奥，思过半矣。", "《滴天髓》（旧题宋·京图撰，明·刘基注）") +
         sources([["《渊海子平》", "：子平法第一部集成著作，旧题宋·徐大升辑。"], ["《滴天髓》", "：旧题宋·京图撰、明·刘基注，清·任铁樵作疏后大行于世，论旺衰喜用之祖。"], ["《穷通宝鉴》", "：原名《栏江网》，清·余春台编，按月令取调候用神之经典（本站简化模型暂未纳入调候法）。"], ["《三命通会》", "：明·万民英撰（1596），《四库全书》收录的命理百科。"]], "zh") +
-        '<p class="disclaimer">内容仅供文化传统研究与娱乐参考。</p>' +
+        '' +
         "</article>";
       }
     }

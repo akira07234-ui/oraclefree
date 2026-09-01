@@ -10,6 +10,7 @@
   var BR_EL = ["水","土","木","木","土","火","火","土","金","金","土","水"];
   var BR_PY = ["Zǐ","Chǒu","Yín","Mǎo","Chén","Sì","Wǔ","Wèi","Shēn","Yǒu","Xū","Hài"];
   var BR_ANIMAL = ["Rat","Ox","Tiger","Rabbit","Dragon","Snake","Horse","Goat","Monkey","Rooster","Dog","Pig"];
+  var BR_ANIMAL_ZH = ["鼠","牛","虎","兔","龙","蛇","马","羊","猴","鸡","狗","猪"];
   var EL_ORDER = ["木","火","土","金","水"];
   var EL_EN = { "木":"Wood", "火":"Fire", "土":"Earth", "金":"Metal", "水":"Water" };
   var SHISHEN = { 比肩:"Friend", 劫财:"Rival", 食神:"Talent", 伤官:"Rebel", 偏财:"Windfall", 正财:"Wealth", 七杀:"Warrior", 正官:"Officer", 偏印:"Mystic", 正印:"Scholar" };
@@ -159,7 +160,7 @@
         strengthZh: strength === "weak" ? "偏弱" : strength === "strong" ? "偏强" : "中和",
         favorable: favorable,
         animal: BR_ANIMAL[BRANCHES.indexOf(ec.getYearZhi())],
-        animalZh: lunar.getYearShengXiao()
+        animalZh: BR_ANIMAL_ZH[BRANCHES.indexOf(ec.getYearZhi())]
       },
       dayun: dayun,
       yunStart: { y: yun.getStartYear(), m: yun.getStartMonth(), d: yun.getStartDay() },

@@ -4,6 +4,8 @@ var esc = tpl.esc;
 var XIANG = require("./data/xiang");
 var YAO = require("./data/yao");
 var TUAN = require("./data/tuan");
+var HEXREAD = require("./data/hex-readings");
+var GREAD = require("./data/guanyin-readings");
 
 var BRANCH_INFO = {
   rat: { branch: "子", hour: "23:00–00:59", season: "midwinter, the hour of hidden potential" },
@@ -40,12 +42,23 @@ function zodiacAnimal(Z, z) {
   "<p><small>" + (Z
     ? "对应地支 " + z.branch + "，时辰 " + info.hour + "。注意：农历新年或立春前后出生者需以八字排盘精确判定属相。"
     : "Branch " + z.branch + ", governing the hours " + info.hour + " and the season of " + info.season + ". If you were born in January or February, confirm your sign with a full <a href='/'>BaZi calculation</a> — the lunar new year moves.") + "</small></p></div>" +
-  (Z ? '<div class="panel"><h2>性格与事业</h2><p>' + z.traitsZh + "</p><p><b>适合方向：</b>" + z.careerZh + "</p></div>"
+  (Z ? '<div class="panel"><h2>五行 · 阴阳 · 本命</h2><p>本命属<b>' + z.wx + '</b>（' + z.yin + '），地支「' + z.branch + '」，当值时辰 ' + info.hour + '。<span class="tag">' + z.sanhe + '</span> <span class="tag">六合 ' + z.liuhe + '</span></p>' +
+       '<p><b>性格详解：</b>' + z.deepZh + '</p></div>'
      : '<div class="panel"><h2>Career & Working Style</h2><p>' + z.career + "</p></div>") +
+  (Z ? '<div class="panel"><h2>生肖取象 · 源流</h2><p>' + z.xiang + '</p><p><small>十二生肖配十二地支，旧依时辰与物性相配，其说见明·郎瑛《七修类稿》及《协纪辨方书》；此处取象属民俗文化解读。</small></p></div>' : "") +
+  (Z ? '<div class="panel"><h2>事业与方向</h2><p>' + z.careerZh + "</p></div>" : "") +
   '<div class="panel"><h2>' + (Z ? "最佳与最需磨合的配对" : "Best & Hardest Matches") + "</h2>" +
   "<p>" + (Z ? "六合三合（最合拍）：" : "Six & Three Harmony (best matches): ") + names(z.best) + "</p>" +
   "<p>" + (Z ? "相冲相害（需要经营）：" : "Clash & harm (needs work): ") + names(z.worst) + "</p>" +
+  (Z ? '<p><b>相处与开运建议：</b>' + z.adviceZh + '</p>' : "") +
   '<p><a class="btn small" href="' + (Z ? "/zh/zodiac/" : "/zodiac/") + '">' + (Z ? "查询与TA的配对" : "Check a pairing") + "</a></p></div>" +
+  (Z ? '<div class="panel"><h2>地支合冲刑害（配对之本）</h2><div class="scrollx"><table class="t"><tr><th>关系</th><th>对应</th><th>含义</th></tr>' +
+       '<tr><td><b>三合局</b></td><td>' + z.sanhe + '</td><td>与同局两生肖一气相通，最易互相成就</td></tr>' +
+       '<tr><td><b>六合</b></td><td>' + z.liuhe + '</td><td>地支暗合，天然的默契，宜亲近</td></tr>' +
+       '<tr><td><b>六冲</b></td><td>' + z.chong + '</td><td>正面对冲，观念与步调相反，需分工与边界</td></tr>' +
+       '<tr><td><b>六害</b></td><td>' + z.hai + '</td><td>暗中消耗，易生误会，贵在坦诚</td></tr>' +
+       '<tr><td><b>相刑</b></td><td>' + z.xing + '</td><td>规矩与摩擦并存，立好分寸反能相成</td></tr>' +
+       '</table></div><p><small>合、冲、刑、害依《三命通会·论地支三合六害三刑》与《协纪辨方书》。生肖仅年支一面，精确合婚宜参<a href="/zh/">四柱八字</a>。</small></p></div>' : "") +
   '<div class="panel"><h2>' + (Z ? "幸运档案" : "Lucky Profile") + "</h2>" +
   "<p>" + (Z ? "幸运数字：" + z.lucky.join("、") + "　幸运颜色：" + z.colors + "　幸运花：" + z.flower : "Lucky numbers: " + z.lucky.join(", ") + " · Lucky colors: " + z.colors + " · Lucky flowers: " + z.flower) + "</p></div>" + AD_SLOT +
   '<div class="panel"><h2>' + (Z ? "不止看生肖" : "Beyond the Zodiac") + "</h2><p>" +
@@ -92,11 +105,19 @@ function hexagramPage(Z, hx, all) {
     var parts = y.split("：");
     return "<tr><td style='white-space:nowrap'><b>" + parts[0] + "</b></td><td>" + parts.slice(1).join("：") + "</td></tr>";
   }).join("") + "</table></div>" +
-  "<h2>" + (Z ? "白话解读" : "In Plain Terms") + "</h2>" +
-  "<p>" + (Z ? hx.theme + "占得此卦，先读卦辞原文，再结合所问之事体会卦象的时机与姿态。" : hx.theme + " When you receive this hexagram, hold the judgment beside your question: it describes a posture and a season, not a script.") + "</p>" +
+  (Z ? '<h2>白话详解</h2>' +
+     '<div class="panel"><p>' + (HEXREAD[hx.n] ? HEXREAD[hx.n].gx : hx.theme) + '</p>' +
+     (HEXREAD[hx.n] ? '<p style="margin-top:8px"><b>象传白话：</b>' + HEXREAD[hx.n].xx + '</p>' : '') + '</div>' +
+     (HEXREAD[hx.n] ? '<div class="scrollx"><table class="t pal"><tr><th>方面</th><th>白话解读</th></tr>' +
+       '<tr><td><b>事业</b></td><td>' + HEXREAD[hx.n].sy + '</td></tr>' +
+       '<tr><td><b>财运</b></td><td>' + HEXREAD[hx.n].cy + '</td></tr>' +
+       '<tr><td><b>感情</b></td><td>' + HEXREAD[hx.n].gq + '</td></tr>' +
+       '<tr><td><b>决策建议</b></td><td>' + HEXREAD[hx.n].jy + '</td></tr>' +
+       '</table></div>' : "")
+   : '<h2>In Plain Terms</h2><p>' + hx.theme + " When you receive this hexagram, hold the judgment beside your question: it describes a posture and a season, not a script.</p>") +
   AD_SLOT +
   "<p>" + nav.join(" ") + "</p>" +
-  '<p class="disclaimer">I Ching judgments quoted from the Zhouyi (public domain); modern renderings by BaziOracle, for cultural and entertainment reference. ' + (Z ? "卦辞引自《周易》古经。" : "") + "</p>" +
+  '<p class="disclaimer">I Ching judgments quoted from the Zhouyi (public domain); modern renderings by BaziOracle. ' + (Z ? "卦辞引自《周易》古经。" : "") + "</p>" +
   "</article>";
   return {
     title: Z ? "易经第" + hx.n + "卦_" + hx.name + "卦(" + hx.py + ")卦辞详解 | 八字神谕" : "I Ching Hexagram " + hx.n + " — " + hx.name + " (" + hx.py + "): " + hx.en + " | BaziOracle",
@@ -121,11 +142,17 @@ function signPage(Z, s, en) {
   '<p class="kc-poem">' + poem + "</p>" +
   "<h2>" + (Z ? "解曰" : "The Meaning") + "</h2>" +
   "<p>" + s.meaning + "</p>" +
-  "<p><b>" + (Z ? "古人典故" : "The allusion") + "：</b>" + s.title + (Z ? "。签诗以这一典故起兴，读签时可体会故事中人物的处境与本签的呼应。" : " — the poem borrows this episode; read your question against how the story's figure fared.") + "</p>" +
+  (Z && s.explanation ? '<h2>仙机</h2><p class="kc-poem">' + s.explanation + "</p>" : "") +
+  (Z ? (GREAD[s.id]
+      ? '<h2>签诗白话</h2><p>' + GREAD[s.id].bai + "</p>" +
+        '<h2>古人典故</h2><p><b>' + s.title + "</b> —— " + GREAD[s.id].dg + "</p>" +
+        '<div class="panel"><h2 style="margin-top:0">解签指引</h2><p style="margin-bottom:0">' + GREAD[s.id].yj + "</p></div>"
+      : '<p><b>古人典故：</b>' + s.title + "。签诗以这一典故起兴，读签时可体会故事中人物的处境与本签的呼应。</p>")
+    : '<p><b>The allusion: </b>' + s.title + " — the poem borrows this episode; read your question against how the story's figure fared.</p>") +
   (en ? "<h2>In English</h2><p><b>Theme:</b> " + en.theme + "</p><p><b>Advice:</b> " + en.advice + "</p>" : "") +
   AD_SLOT +
   "<p>" + prev + ' <a class="tag" href="' + (Z ? "/zh/kau-cim/" : "/kau-cim/") + '">' + (Z ? "再求一签" : "Draw again") + "</a> " + next + "</p>" +
-  '<p class="disclaimer">' + (Z ? "签诗与解曰为传统文本，释义供文化娱乐参考。" : "Poems and interpretations follow the traditional text; readings are for cultural and entertainment reference.") + "</p>" +
+  '<p class="disclaimer">' + (Z ? "签诗与解曰为传统文本。" : "Poems and interpretations follow the traditional text.") + "</p>" +
   "</article>";
   return {
     title: Z ? "观音灵签第" + s.id + "签_" + s.title + "_" + lv + "签诗详解 | 八字神谕" : "Guanyin Sign " + s.id + " — " + s.title + (en ? " (" + en.enTitle + ")" : "") + " | BaziOracle",

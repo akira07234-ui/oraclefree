@@ -25,7 +25,7 @@ function makeEl(name) {
 var form = makeEl("zw-form");
 var out = makeEl("zw-out");
 form._q["[name=timeIndex]"] = makeEl("sel");
-form._q["[name=year]"] = makeEl("year");
+form._q["[name=qyear]"] = makeEl("year");
 
 global.document = {
   getElementById: function (id) { return id === "zw-form" ? form : (id === "zw-out" ? out : null); },
@@ -34,11 +34,14 @@ global.document = {
 global.FormData = function (f) { this._d = f._data || {}; };
 global.FormData.prototype.get = function (k) { return this._d[k]; };
 
-/* Load a language pack the same way the generated pages do. */
+/* Load a language pack the same way build.js injects it (build.js:37/41 merges READINGS[lang].zp into zw). */
+var READINGS = require("./lang/readings");
 function loadPack(name) {
   if (name === "en") return null;
-  if (name === "zh") return require("./lang/zh-tools").zw;
-  return require("./lang/" + name).tools.zw;
+  var zw = name === "zh" ? require("./lang/zh-tools").zw : require("./lang/" + name).tools.zw;
+  zw = JSON.parse(JSON.stringify(zw));
+  zw.zp = READINGS[name].zp;
+  return zw;
 }
 
 var fails = 0;
@@ -48,7 +51,8 @@ function ok(cond, label, detail) {
 }
 
 function run(lang, data, expectYear) {
-  console.log("\n==== " + lang + "  " + data.date + "  查询 " + data.year + " 年 ====");
+  var dateStr = data.year + "-" + (+data.month) + "-" + (+data.day);
+  console.log("\n==== " + lang + "  " + dateStr + "  查询 " + data.qyear + " 年 ====");
   global.window.L10N = { zw: loadPack(lang), bu: loadPack(lang) ? require("./lang/zh-tools").bu : undefined };
   if (lang !== "zh" && lang !== "en") {
     global.window.L10N = { zw: loadPack(lang) };
@@ -67,6 +71,12 @@ function run(lang, data, expectYear) {
   ok(html.indexOf("cur-year") >= 0, "高亮流年宫 (cur-year)");
   ok(html.indexOf("zw-legend") >= 0, "渲染图例");
   ok(html.indexOf("zw-dyn") >= 0, "渲染大限/流年解读面板");
+  ok(html.indexOf("undefined") < 0 && html.indexOf("NaN") < 0, "渲染无 undefined/NaN 脏输出");
+  if (lang !== "en") {
+    ok(html.indexOf("针对性解读") >= 0 || html.indexOf("Lectura dirigida") >= 0 ||
+       html.indexOf("للخريطة") >= 0 || html.indexOf("個別解読") >= 0,
+      "针对性解读面板已渲染");
+  }
 
   /* the four transformations must come from the pack, not the English fallback */
   var pack = global.window.L10N && global.window.L10N.zw;
@@ -83,12 +93,12 @@ function run(lang, data, expectYear) {
   /* --- cross-check the highlighted decade against iztro directly ---
    * Cast in the page's own language so palace names are comparable. */
   var izLang = (pack && pack.izLang) || "en-US";
-  var chart = iztro.astro.bySolar(data.date, +data.timeIndex, data.gender, true, izLang);
-  var h = chart.horoscope(data.year + "-06-15");
+  var chart = iztro.astro.bySolar(dateStr, +data.timeIndex, data.gender, true, izLang);
+  var h = chart.horoscope(data.qyear + "-06-15");
   var decPal = chart.palaces[h.decadal.index];
   var age = h.age.nominalAge;
   ok(age >= decPal.decadal.range[0] && age <= decPal.decadal.range[1],
-    "大限宫与虚岁自洽 (" + data.year + "年虚岁" + age + " 落 " + decPal.name +
+    "大限宫与虚岁自洽 (" + data.qyear + "年虚岁" + age + " 落 " + decPal.name +
     " [" + decPal.decadal.range[0] + "-" + decPal.decadal.range[1] + "])");
 
   /* the rendered grid must flag that same palace name as the current decade */
@@ -110,7 +120,7 @@ function run(lang, data, expectYear) {
   }
 
   /* --- year switch re-render --- */
-  var yIn = form._q["[name=year]"];
+  var yIn = form._q["[name=qyear]"];
   var before = out.innerHTML;
   yIn.value = String(expectYear);
   yIn.fire("change");
@@ -121,12 +131,12 @@ function run(lang, data, expectYear) {
 }
 
 /* 中文：水二局，官禄宫为空 */
-run("zh", { date: "1991-07-23", timeIndex: "3", gender: "male", year: "2026" }, "2050");
+run("zh", { year: "1991", month: "7", day: "23", timeIndex: "3", gender: "male", qyear: "2026" }, "2050");
 /* 英文走 ziwei.js 内置 EN 兜底 */
-run("en", { date: "1985-03-12", timeIndex: "6", gender: "female", year: "2026" }, "2031");
-run("ja", { date: "2000-01-01", timeIndex: "0", gender: "male", year: "2028" }, "2040");
-run("es", { date: "1975-11-08", timeIndex: "10", gender: "female", year: "2026" }, "2033");
-run("ar", { date: "1990-05-05", timeIndex: "8", gender: "female", year: "2027" }, "2038");
+run("en", { year: "1985", month: "3", day: "12", timeIndex: "6", gender: "female", qyear: "2026" }, "2031");
+run("ja", { year: "2000", month: "1", day: "1", timeIndex: "0", gender: "male", qyear: "2028" }, "2040");
+run("es", { year: "1975", month: "11", day: "8", timeIndex: "10", gender: "female", qyear: "2026" }, "2033");
+run("ar", { year: "1990", month: "5", day: "5", timeIndex: "8", gender: "female", qyear: "2027" }, "2038");
 
 console.log("\n" + (fails === 0 ? "全部断言通过" : fails + " 处断言失败"));
 process.exit(fails === 0 ? 0 : 1);

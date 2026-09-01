@@ -8,7 +8,7 @@ var LANGS = [
   { code: "ar", prefix: "/ar", htmlLang: "ar", dir: "rtl", label: "العربية", font: "Noto+Naskh+Arabic:wght@400;600;700" },
   { code: "ja", prefix: "/ja", htmlLang: "ja", dir: "ltr", label: "日本語", font: "Noto+Serif+JP:wght@400;600;700" }
 ];
-var VER = "?v=14";
+var VER = "?v=16";
 
 var JB_STAGE = '<div id="jb-stage" class="jb-stage">' +
   '<div class="jb-piece" id="jb-b1"><div class="jb-sh"></div><div class="jb-body"><div class="jb-f jb-f-flat"></div><div class="jb-f jb-f-dome"></div></div></div>' +

@@ -4,12 +4,13 @@
   var EN = {
     a: "Your sign", b: "Their sign", btn: "Check Match",
     score: "Match score",
-    same: { t: "Same Sign Pair", b: "Two of the same sign mirror each other — deep understanding with shared blind spots. Generally favorable with occasional friction." },
-    six: { t: "Six Harmony — A Heaven-Made Match", b: "This is one of the classical Six Harmony pairs — complementary temperaments and natural rapport, excellent for love or partnership." },
-    trio: { t: "Three Harmony — Kindred Ambition", b: "You share a Three Harmony trine — energies on the same frequency, each magnifying the other." },
-    clash: { t: "Clash — Opposing Currents", b: "Clashing signs create friction. With clear boundaries and divided roles, opposition can turn into complementary strength." },
-    harm: { t: "Harm — Silent Drain", b: "Harming pairs drain each other in small ways — extra honesty and communication are the antidote." },
-    neutral: { t: "Neutral — It's Up to You", b: "No major interaction in classical terms — the pairing is what you make of it." }
+    same: { t: "Same Sign (Bi He)", b: "Same signs mirror each other — deep understanding, shared blind spots. For 辰午酉亥 (Dragon, Horse, Rooster, Pig) a same-branch 'self-punishment' can add stubborn clashes; mutual reminders keep it balanced." },
+    six: { t: "Six Harmony — A Heaven-Made Match", b: "子丑·寅亥·卯戌·辰酉·巳申·午未 — the classical Six Harmony pairs, from the old 'sun–moon conjunction' idea (Xieji Bianfang Shu). A one-to-one hidden bond; excellent for love or partnership." },
+    trio: { t: "Three Harmony — Kindred Ambition", b: "申子辰水·亥卯未木·寅午戌火·巳酉丑金 — a full birth-to-treasury elemental trine (Sanming Tonghui). Three on the same frequency, each magnifying the other; ideal for building things together." },
+    clash: { t: "Clash — Opposing Currents", b: "子午·丑未·寅申·卯酉·辰戌·巳亥 — the six oppositions, branches seven apart, like winter against summer (Sanming Tonghui). Clash brings motion and friction; with clear roles it turns into complementary energy." },
+    harm: { t: "Harm — A Clash Behind the Bond", b: "子未·丑午·寅巳·卯辰·申亥·酉戌 — the six harms, born when one sign's clash breaks the other's harmony (Sanming Tonghui). A quiet drain; honesty is the antidote." },
+    xing: { t: "Punishment — Friction Over Bonds", b: "子卯 (incivility), 丑戌未 (reliance on power), 寅巳申 (ingratitude) — the three punishments (Sanming Tonghui). Rules rub against goodwill; clear boundaries turn it into mutual sharpening." },
+    neutral: { t: "Neutral — It's Up to You", b: "No direct harmony, clash, harm or punishment between the two branches — a neutral tie. How it turns out is what you make of it; check the two charts' favorable elements for more." }
   };
   var T = (window.L10N && window.L10N.zc) || EN;
   for (var k in EN) if (T[k] === undefined) T[k] = EN[k];
@@ -25,6 +26,7 @@
   var TRIOS = [["rat", "dragon", "monkey"], ["tiger", "horse", "dog"], ["rabbit", "goat", "pig"], ["snake", "rooster", "ox"]];
   var CHASH = { "horse-rat": 1, "goat-ox": 1, "monkey-tiger": 1, "rabbit-rooster": 1, "dog-dragon": 1, "pig-snake": 1 };
   var HAI = { "goat-rat": 1, "horse-ox": 1, "snake-tiger": 1, "dragon-rabbit": 1, "pig-monkey": 1, "dog-rooster": 1 };
+  var XING = { "rabbit-rat": 1, "dog-ox": 1, "dog-goat": 1 };
 
   function kk(a, b) { return [a, b].sort().join("-"); }
   function trio(a, b) { return TRIOS.some(function (t) { return t.indexOf(a) >= 0 && t.indexOf(b) >= 0; }); }
@@ -47,6 +49,7 @@
     else if (trio(a, b)) { v = T.trio; v._score = 88; }
     else if (CHASH[kk(a, b)]) { v = T.clash; v._score = 40; }
     else if (HAI[kk(a, b)]) { v = T.harm; v._score = 50; }
+    else if (XING[kk(a, b)]) { v = T.xing; v._score = 55; }
     else { v = T.neutral; v._score = 72; }
     var score = v._score || 75;
     out.className = "result show";

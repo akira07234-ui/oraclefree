@@ -192,7 +192,7 @@ zh: {
     seasLab: "月令", seasName: { wang: "旺", xiang: "相", xiu: "休", qiu: "囚", si: "死" },
     seasNote: "月令以月支定五行当令之气：当令者「旺」，我生者「相」，生我者「休」，克我者「囚」，我克者「死」。得令者一分力可作两分用，失令者力倍而功半 —— 这是子平论旺衰的第一层，也是数量占比看不出来的部分。",
     favLead: "喜用神取用", favNote: "喜用是命局最需要的那股气。补益不离喜用 —— 补错了方向，越补越偏。",
-    disc: "以上由传统子平法则简化推算，五行分级为便于理解而设的比例判据，古籍引文仅供文化学习。命理之说为文化娱乐参考，不构成医学、投资或人生决策建议；身体不适请就医。",
+    disc: "以上由传统子平法则简化推算，五行分级为便于理解而设的比例判据。",
     lab: {
       nature: "本性", taste: "五味", zang: "五脏", fu: "六腑", ti: "五体", qiao: "五官",
       zhi: "五志", wei: "五味", se: "五色", fang: "五方", ji: "五季", yin: "五音",
@@ -570,7 +570,7 @@ en: {
     seasLab: "month's command", seasName: { wang: "wang", xiang: "xiang", xiu: "xiu", qiu: "qiu", si: "si" },
     seasNote: "The month's command is set by the month branch: the ruling phase is wang (prosperous), what it generates is xiang, what generates it is xiu, what restrains it is qiu, and what it restrains is si. An element in season does double duty on the same raw force; one out of season labours for half the result. This is the first layer of Zi Ping strength assessment, and it is exactly what a raw percentage cannot show.",
     favLead: "Favorable elements", favNote: "The favorable element is the qi your chart most needs. All supplementation follows it — supplement the wrong direction and the more you add, the further you lean.",
-    disc: "Computed with simplified traditional Zi Ping rules; the strength grades are proportional thresholds chosen for readability, and the classical quotations are here for cultural study. This is entertainment and cultural reference, not medical, financial or life advice — please see a doctor for anything medical.",
+    disc: "Computed with simplified traditional Zi Ping rules; the strength grades are proportional thresholds chosen for readability, and the classical quotations are here for cultural study..",
     lab: {
       nature: "Nature", taste: "Flavour", zang: "Zang organ", fu: "Fu organ", ti: "Tissue", qiao: "Sense organ",
       zhi: "Emotion", wei: "Flavour", se: "Colour", fang: "Direction", ji: "Season", yin: "Note",
@@ -759,7 +759,7 @@ es: {
     seasLab: "mandato del mes", seasName: { wang: "wang", xiang: "xiang", xiu: "xiu", qiu: "qiu", si: "si" },
     seasNote: "El mandato del mes lo fija la rama mensual: la fase que gobierna es wang (próspera), lo que ella genera es xiang, lo que la genera es xiu, lo que la domina es qiu y lo que ella domina es si. Un elemento en estación rinde el doble con la misma fuerza bruta; uno fuera de estación trabaja el doble para la mitad. Esta es la primera capa de la valoración de fuerza en Zi Ping, y es justo lo que un porcentaje bruto no puede mostrar.",
     favLead: "Elementos favorables", favNote: "El elemento favorable es el qi que tu carta más necesita. Todo suplemento lo sigue: suplementa la dirección equivocada y cuanto más añadas, más te inclinarás.",
-    disc: "Calculado con reglas tradicionales simplificadas de Zi Ping; los grados de fuerza son umbrales proporcionales elegidos para facilitar la lectura, y las citas clásicas están aquí para el estudio cultural. Esto es referencia cultural y entretenimiento, no consejo médico, financiero ni vital: consulta al médico para cualquier asunto de salud.",
+    disc: "Calculado con reglas tradicionales simplificadas de Zi Ping; los grados de fuerza son umbrales proporcionales elegidos para facilitar la lectura, y las citas clásicas están aquí para el estudio cultural..",
     lab: {
       nature: "Naturaleza", taste: "Sabor", zang: "Órgano zang", fu: "Órgano fu", ti: "Tejido", qiao: "Órgano sensorial",
       zhi: "Emoción", wei: "Sabor", se: "Color", fang: "Dirección", ji: "Estación", yin: "Nota",
@@ -948,7 +948,7 @@ ja: {
     seasLab: "月令", seasName: { wang: "旺", xiang: "相", xiu: "休", qiu: "囚", si: "死" },
     seasNote: "月令は月支により定まる。当令のものを「旺」、我が生ずるものを「相」、我を生ずるものを「休」、我を剋するものを「囚」、我が剋するものを「死」という。令を得た者は同じ力で倍の働きをし、令を失った者は倍の労して半分の功しか得ない。これは子平が旺衰を論ずる第一層であり、数量の比率だけでは決して見えない部分である。",
     favLead: "喜用神の取用", favNote: "喜用とは命局が最も欲する気のこと。補益は必ず喜用に沿う。向きを誤れば、補うほど傾く。",
-    disc: "以上は伝統的な子平法を簡略化して推算したもので、旺衰の等級は読みやすさのための比例的目安にすぎない。古籍の引用は文化学習のためのものである。命理の説は文化的娯楽の参考であり、医療・投資・人生判断の助言ではない。体の不調は医療機関へ。",
+    disc: "以上は伝統的な子平法を簡略化して推算したもので、旺衰の等級は読みやすさのための比例的目安にすぎない。古籍の引用は文化学習のためのものである。",
     lab: {
       nature: "本性", taste: "五味", zang: "五臓", fu: "六腑", ti: "五体", qiao: "五官",
       zhi: "五志", wei: "五味", se: "五色", fang: "五方", ji: "五季", yin: "五音",

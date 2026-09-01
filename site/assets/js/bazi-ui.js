@@ -18,8 +18,8 @@
     strongestIs: "Your strongest element is",
     missingNote: "Missing:", presentNote: "All five elements are present — a well-circulated chart.",
     balanceNote: " — traditionally balanced via name, direction or color.",
-    discFull: "Computed with simplified traditional Zi Ping rules, for cultural & entertainment reference. Your destiny remains in your own hands.",
-    discEl: "A simplified model, for cultural & entertainment reference.",
+    discFull: "Computed with simplified traditional Zi Ping rules, Your destiny remains in your own hands.",
+    discEl: "A simplified model,",
     fiveTitlePg: "Your Five Elements",
     invalidDate: "Invalid date — please check your input (lunar dates must really exist).",
     personality: {

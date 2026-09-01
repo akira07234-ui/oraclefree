@@ -8,8 +8,8 @@
   var EN = {
     soul: "Soul", body: "Body", element: "Element", chart: "Zi Wei Dou Shu Chart",
     title: "Your Purple Star Chart",
-    disc: "Zi Wei Dou Shu is a deep system; this chart shows the twelve palaces with major & minor stars, for cultural & entertainment reference.",
-    discDY: "Decadal and yearly readings use the traditional palace-walking method with a simplified rule set; for cultural & entertainment reference.",
+    disc: "Zi Wei Dou Shu is a deep system; this chart shows the twelve palaces with major & minor stars,",
+    discDY: "Decadal and yearly readings use the traditional palace-walking method with a simplified rule set;",
     bodyPalace: " (Body)",
     ti: ["Zi (early) 00:00–00:59", "Chou 01:00–02:59", "Yin 03:00–04:59", "Mao 05:00–06:59", "Chen 07:00–08:59", "Si 09:00–10:59", "Wu 11:00–12:59", "Wei 13:00–14:59", "Shen 15:00–16:59", "You 17:00–18:59", "Xu 19:00–20:59", "Hai 21:00–22:59", "Zi (late) 23:00–23:59"],
     mut: { lu: "Lu", quan: "Quan", ke: "Ke", ji: "Ji", a: "Lu", b: "Quan", c: "Ke", d: "Ji" },
@@ -251,60 +251,92 @@
     return arr.join("\n");
   }
 
-  /* ---------- existing static reading (kept) ---------- */
+  /* ---------- targeted reading (built from THIS chart) ---------- */
   function readingHtml() {
-    var S = STATE;
-    var zp = T.zp;
-    if (!zp) return "";
-    function zhOf(dp) { return S.zhByIdx[brIndex(dp.earthlyBranch)] || null; }
-    function starTexts(dp, limit) {
-      var zc = zhOf(dp);
-      if (!zc) return [];
-      var mj = majorsWithBorrow(S.byIdx, brIndex(dp.earthlyBranch));
-      var useZh = zc;
-      if (mj.borrowed) useZh = S.zhByIdx[(brIndex(dp.earthlyBranch) + 6) % 12] || zc;
-      var arr = useZh.majorStars.map(function (s) {
-        var txt = (zp.starsLong && zp.starsLong[s.name]) || zp.stars[s.name] || null;
-        return txt ? "<b>" + s.name + "</b> " + txt : null;
-      }).filter(Boolean);
-      return limit ? arr.slice(0, limit) : arr;
+    var S = STATE, zp = T.zp;
+    if (!zp || !zp.stars) return "";
+    function zhPal(dp) { return S.zhByIdx[brIndex(dp.earthlyBranch)] || null; }
+    function palByZh(nm) { for (var i = 0; i < S.chart.palaces.length; i++) { var z = zhPal(S.chart.palaces[i]); if (z && z.name === nm) return z; } return null; }
+    function starLine(s) {
+      var d = zp.stars[s.name]; if (!d) return "";
+      var desc = (typeof d === "string") ? d : ((d.g || "") + " " + (d.m || ""));
+      var b = ""; if (s.brightness && zp.bright) { var bt = zp.bright[String(s.brightness).charAt(0)]; b = "（" + s.brightness + (bt ? "·" + bt : "") + "）"; }
+      var hua = (s.mutagen && zp.hua && zp.hua[s.mutagen]) ? " <b style='color:var(--verm)'>生年" + s.mutagen + "</b>" : "";
+      return "<p><b>" + s.name + "</b>" + b + hua + "：" + desc + "</p>";
     }
-    function findPal(zhName) {
-      for (var i = 0; i < S.chart.palaces.length; i++) {
-        var zc = zhOf(S.chart.palaces[i]);
-        if (zc && zc.name === zhName) return S.chart.palaces[i];
-      }
-      return null;
-    }
-    var MUTN = { "禄": "禄", "权": "权", "科": "科", "忌": "忌", lu: "禄", quan: "权", ke: "科", ji: "忌", a: "禄", b: "权", c: "科", d: "忌" };
     var h = ['<div class="panel" style="margin-top:14px"><h3>' + zp.title + '</h3><p><small>' + zp.srcLine + "</small></p>"];
-    var self = findPal("命宫");
+    var self = palByZh("命宫");
+    var sf = [];
     if (self) {
-      h.push('<h3 style="margin-top:10px">' + zp.soulLab + " · " + self.name + "</h3>");
-      starTexts(self).forEach(function (t) { h.push("<p>" + t + "</p>"); });
-      h.push("<p>" + ((zp.palDeep && zp.palDeep["命宫"]) || zp.pal["命宫"] || "") + "</p>");
+      var bi0 = brIndex(self.earthlyBranch);
+      S.chart.palaces.forEach(function (p) { var b2 = brIndex(p.earthlyBranch); if (b2 !== bi0 && (b2 % 4 === bi0 % 4 || b2 === (bi0 + 6) % 12)) { var z = zhPal(p); if (z) sf.push(z); } });
     }
-    ["官禄", "财帛", "夫妻"].forEach(function (zhName) {
-      var pp = findPal(zhName);
-      if (!pp) return;
-      h.push('<h3 style="margin-top:10px">' + pp.name + "</h3>");
-      h.push("<p>" + ((zp.palDeep && zp.palDeep[zhName]) || zp.pal[zhName] || "") + "</p>");
-      starTexts(pp, 2).forEach(function (t) { h.push("<p>" + t + "</p>"); });
-    });
-    var muts = [];
-    S.chart.palaces.forEach(function (pp) {
-      pp.majorStars.forEach(function (s) {
-        if (!s.mutagen) return;
-        var kk = String(s.mutagen).toLowerCase();
-        var m = (T.mut && T.mut[kk]) || (zp.mutText && zp.mutText[MUTN[kk]]) || String(s.mutagen);
-        muts.push(s.name + " " + m + " · " + pp.name);
+    /* 五行局 · 起运 */
+    if (zp.wxju && S.chart.fiveElementsClass && zp.wxju[S.chart.fiveElementsClass]) {
+      var w = zp.wxju[S.chart.fiveElementsClass];
+      h.push('<h3 style="margin-top:10px">五行局 · ' + S.chart.fiveElementsClass + '</h3><p>' + w.g + " " + w.m + "</p>");
+    }
+    /* 命格主调 */
+    if (self) {
+      h.push('<h3 style="margin-top:10px">' + (zp.soulLab || "命宫") + ' · 命宫（' + self.earthlyBranch + '）</h3>');
+      if (!self.majorStars.length) h.push('<p>' + (zp.noStar || "本宫无正曜，借对宫论之。") + '</p>');
+      else self.majorStars.forEach(function (s) { var t = starLine(s); if (t) h.push(t); });
+    }
+    /* 格局识别 */
+    if (zp.geju && self) {
+      var mingSet = self.majorStars.map(function (s) { return s.name; });
+      var pool = mingSet.slice();
+      sf.forEach(function (z) { z.majorStars.forEach(function (s) { if (pool.indexOf(s.name) < 0) pool.push(s.name); }); });
+      var hits = [];
+      zp.geju.forEach(function (rule) {
+        var src = rule.scope === "ming" ? mingSet : pool;
+        if (rule.need.every(function (n) { return src.indexOf(n) >= 0; })) hits.push(rule);
       });
-    });
-    if (muts.length) {
-      h.push('<h3 style="margin-top:10px">' + zp.mutLab + "</h3><p>" + zp.mutNote + "</p>");
-      muts.forEach(function (m) { h.push('<p><span class="tag">' + m + "</span></p>"); });
+      if (hits.length) {
+        h.push('<h3 style="margin-top:10px">格局</h3>');
+        hits.slice(0, 2).forEach(function (gj) { h.push('<p><b>' + gj.name + "</b>：" + gj.g + "<br>" + gj.m + "</p>"); });
+      }
     }
-    h.push("</div>");
+    /* 身宫 */
+    if (zp.bodyLab) {
+      var body = null; S.chart.palaces.forEach(function (p) { if (p.isBodyPalace) body = zhPal(p); });
+      if (body) h.push('<h3 style="margin-top:10px">' + zp.bodyLab + '</h3><p>' + (zp.bodyNote || '') + ' 身宫落 <b>' + body.name + '</b>' + (zp.palDomain && zp.palDomain[body.name] ? '（' + zp.palDomain[body.name] + '）' : '') + '。</p>');
+    }
+    /* 生年四化 */
+    if (zp.hua) {
+      var hl = [];
+      S.chart.palaces.forEach(function (p) { var z = zhPal(p); if (!z) return; z.majorStars.forEach(function (s) { if (s.mutagen && zp.hua[s.mutagen]) hl.push('<p><b>' + s.name + '化' + s.mutagen + '</b> 落 ' + z.name + '：' + zp.hua[s.mutagen] + '</p>'); }); });
+      if (hl.length) { h.push('<h3 style="margin-top:10px">' + (zp.huaLab || "生年四化") + '</h3>'); hl.forEach(function (x) { h.push(x); }); }
+    }
+    /* 三方四正 + 六吉六煞 */
+    if (self && zp.sanheLab) {
+      var names = sf.filter(function (z) { return z.majorStars.length; }).map(function (z) { return z.name + "（" + z.majorStars.map(function (s) { return s.name; }).join("、") + "）"; });
+      if (names.length) h.push('<h3 style="margin-top:10px">' + zp.sanheLab + '</h3><p>' + (zp.sanheNote || '') + '</p><p>' + names.join("　") + '</p>');
+      if (zp.jixing && zp.shaxing && zp.jisha) {
+        var minors = [];
+        [self].concat(sf).forEach(function (z) { z.minorStars.forEach(function (s) { if (minors.indexOf(s.name) < 0) minors.push(s.name); }); });
+        var ji = minors.filter(function (n) { return zp.jixing.indexOf(n) >= 0; });
+        var sha = minors.filter(function (n) { return zp.shaxing.indexOf(n) >= 0; });
+        if (ji.length) h.push('<p><b>' + zp.jisha.jiLab + '</b>（' + ji.join("、") + '）：' + zp.jisha.jiText + '</p>');
+        if (sha.length) h.push('<p><b>' + zp.jisha.shaLab + '</b>（' + sha.join("、") + '）：' + zp.jisha.shaText + '</p>');
+      }
+    }
+    /* 命主 · 身主 */
+    if (zp.mzLab && S.chart.soul && S.chart.body) {
+      var ms = zp.stars[S.chart.soul], bs = zp.stars[S.chart.body];
+      h.push('<h3 style="margin-top:10px">' + zp.mzLab + '</h3><p>' + (zp.mzNote || '') + '</p>');
+      if (ms) h.push('<p><b>命主星 ' + S.chart.soul + "</b>：" + (typeof ms === "string" ? ms : ((ms.g || "") + " " + (ms.m || ""))) + "</p>");
+      if (bs) h.push('<p><b>身主星 ' + S.chart.body + "</b>：" + (typeof bs === "string" ? bs : ((bs.g || "") + " " + (bs.m || ""))) + "</p>");
+    }
+    /* 分项：事业 / 财运 / 感情 */
+    var secs = zp.secs || [["官禄", "事业"], ["财帛", "财运"], ["夫妻", "感情"]];
+    secs.forEach(function (x) {
+      var z = palByZh(x[0]); if (!z) return;
+      h.push('<h3 style="margin-top:10px">' + x[1] + ' · ' + x[0] + '宫</h3>');
+      if (!z.majorStars.length) h.push('<p>' + (zp.emptySec || "本宫无正曜，参对宫或借星而论，重在后天经营。") + '</p>');
+      else z.majorStars.slice(0, 2).forEach(function (s) { var t = starLine(s); if (t) h.push(t); });
+    });
+    h.push('</div>');
     return h.join("\n");
   }
 
@@ -319,14 +351,14 @@
   function cast() {
     if (typeof iztro === "undefined") { out.innerHTML = '<div class="panel">Library failed to load.</div>'; return; }
     var fd = new FormData(form);
-    var dateStr = fd.get("date");
-    if (!dateStr) return;
-    var parts = dateStr.split("-");
-    var y = parseInt(fd.get("year"), 10);
+    var by = fd.get("year"), bm = fd.get("month"), bd = fd.get("day");
+    if (!by || !bm || !bd) return;
+    var solarDate = by + "-" + (+bm) + "-" + (+bd);
+    var y = parseInt(fd.get("qyear"), 10);
     if (!y || y < 1900 || y > 2100) { out.innerHTML = '<div class="panel">' + esc(T.badYear) + "</div>"; return; }
     var chart;
     try {
-      chart = iztro.astro.bySolar(parts[0] + "-" + (+parts[1]) + "-" + (+parts[2]), +fd.get("timeIndex"), fd.get("gender"), true, T.izLang);
+      chart = iztro.astro.bySolar(solarDate, +fd.get("timeIndex"), fd.get("gender"), true, T.izLang);
     } catch (e) {
       out.innerHTML = '<div class="panel">Error: ' + esc(e.message) + "</div>";
       return;
@@ -335,7 +367,7 @@
     chart.palaces.forEach(function (p) { byIdx[brIndex(p.earthlyBranch)] = p; });
     var zhByIdx = {};
     try {
-      var zhChart = iztro.astro.bySolar(parts[0] + "-" + (+parts[1]) + "-" + (+parts[2]), +fd.get("timeIndex"), fd.get("gender"), true, "zh-CN");
+      var zhChart = iztro.astro.bySolar(solarDate, +fd.get("timeIndex"), fd.get("gender"), true, "zh-CN");
       zhChart.palaces.forEach(function (pp) { zhByIdx[brIndex(pp.earthlyBranch)] = pp; });
     } catch (e) { /* readings degrade gracefully */ }
     var maps = buildIndexMaps(chart);
@@ -351,7 +383,7 @@
   form.addEventListener("submit", function (ev) { ev.preventDefault(); cast(); });
 
   /* Live re-render when only the fortune year changes (no need to re-cast the chart). */
-  var yearInput = form.querySelector("[name=year]");
+  var yearInput = form.querySelector("[name=qyear]");
   if (yearInput) {
     /* The markup carries a build-time default; refresh it to the visitor's year. */
     yearInput.value = new Date().getFullYear();
