@@ -173,17 +173,6 @@ function homeZh() {
 /* ================= BAZI SUBPAGE ================= */
 function baziPage(Z) {
   var p = Z ? "/zh/bazi/" : "/bazi/";
-  var tools = Z ? [
-    ["🀄", "紫微斗数排盘", "十二宫星盘一键排定。", "/zh/ziwei/"],
-    ["💞", "八字合婚", "输入两人生日，四维打分。", "/zh/"],
-    ["🌙", "在线掷筊", "三筊定一问。", "/zh/jiaobei/"]
-  ] : [
-    ["🀄", "Zi Wei Dou Shu", "Twelve-palace star chart.", "/ziwei/"],
-    ["💞", "Marriage Match", "Four-dimension scoring.", "/"],
-    ["🌙", "Moon Blocks", "Ask and cast.", "/jiaobei/"]
-  ].map(function (t) {
-    return '<a class="card tool-card" href="' + t[3] + '"><span class="ic">' + t[0] + "</span><h3>" + t[1] + "</h3><p style='font-size:.92rem;color:var(--ink2)'>" + t[2] + "</p></a>";
-  }).join("");
   var faq = [
     [Z ? "什么是八字（四柱命理）？" : "What is BaZi?", Z ? "八字以天干地支记录出生的年、月、日、时，共四柱八个字。传统子平法通过分析日主与五行的强弱旺衰，推断性情特质、运势节奏与喜用方向。" : "BaZi writes your birth moment as four pillars of eight characters; Zi Ping method reads the day master's strength against the five elements."],
     [Z ? "生日信息安全吗？" : "Is my birth data safe?", Z ? "安全。历法换算与排盘全部在您的浏览器本地完成，生日不会上传到任何服务器。" : "All calculation runs locally in your browser; birth data never leaves this page."],
@@ -204,9 +193,7 @@ function baziPage(Z) {
   (Z ? "<p>八字（四柱）以年、月、日、时四组干支记录出生时刻，天干在上、地支在下，共八个字，构成你出生一瞬的五行能量地图。传统子平法比较五行的力量，找出日主强弱、喜用神与十年大运。延伸阅读：<a href='/zh/learn/what-is-bazi/'>八字入门</a>。</p>"
      : "<p>BaZi writes your birth moment as four pillars of eight characters — a map of the five elements at your first breath. Zi Ping methodology weighs these elements to find your day master's strength, favorable elements and decade luck pillars. Full guide: <a href='/learn/what-is-bazi/'>What is BaZi</a>.</p>") +
   "</section>" +
-  '<section class="block container" style="max-width:860px"><div class="sec-head"><div class="kicker">FAQ</div><h2>' + (Z ? "常见问题" : "Questions") + "</h2></div>" + faq + "</section>" +
-  '<section class="block container"><div class="sec-head"><h2>' + (Z ? "继续探索" : "Keep Exploring") + "</h2></div>" +
-  '<div class="grid g4">' + tools + "</div></section>";
+  '<section class="block container" style="max-width:860px"><div class="sec-head"><div class="kicker">FAQ</div><h2>' + (Z ? "常见问题" : "Questions") + "</h2></div>" + faq + "</section>";
   return {
     title: Z ? "免费八字排盘_四柱命理_详细解盘_化解建议 | 八字神谕" : "Free BaZi Calculator — Four Pillars, Deep Reading & Remedies | BaziOracle",
     desc: Z ? "免费在线八字排盘：真太阳时校正、格局、调候、大运、详细解盘与开运化解建议，古籍为据。" : "Free BaZi calculator with true solar time, structure, climate adjustment, luck pillars, deep classical reading and remedies.",
