@@ -26,6 +26,8 @@
   btn.textContent = T.btn;
   var stage = document.getElementById("ic-stage");
   var out = document.getElementById("ic-out");
+  var reduceMotion = false;
+  try { reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches; } catch (e) {}
   var HEX = null, TUAN = null, YAO = null, XIANG = null;
 
   Promise.all([
@@ -54,64 +56,92 @@
   btn.addEventListener("click", function () {
     if (!HEX || !TUAN || !YAO || !XIANG) return;
     btn.disabled = true;
-    stage.innerHTML = "<p>" + T.tossing + "</p><p style='font-size:2rem'>⛲</p>";
     var lines = "", changing = [], throws = 0;
+
+    /* ritual stage: three coins flip while the hexagram grows line by line */
+    stage.innerHTML = '<div class="ic-toss"><span class="ic-coin"></span><span class="ic-coin"></span><span class="ic-coin"></span></div>' +
+      "<p>" + T.tossing + "</p>" + '<div class="ic-build"><span class="hexgram"></span></div>';
+    var build = stage.querySelector(".ic-build .hexgram");
+    var coins = [].slice.call(stage.querySelectorAll(".ic-coin"));
+    function flipCoins() {
+      if (reduceMotion) return;
+      coins.forEach(function (c, i) {
+        try {
+          c.animate([
+            { transform: "rotateY(0deg) scale(1)" },
+            { transform: "rotateY(540deg) translateY(-14px) scale(1.12)", offset: 0.55 },
+            { transform: "rotateY(1080deg) scale(1)" }
+          ], { duration: 460, easing: "cubic-bezier(.3,.2,.4,1)", delay: i * 60 });
+        } catch (e) { /* decorative */ }
+      });
+    }
+
     var timer = setInterval(function () {
       throws++;
+      flipCoins();
       var sum = 0;
       for (var c = 0; c < 3; c++) sum += Math.random() < 0.5 ? 3 : 2;
       if (sum === 9) { changing.push(throws); lines = "1" + lines; }
       else if (sum === 8) { lines = "0" + lines; }
       else if (sum === 7) { lines = "1" + lines; }
       else { changing.push(throws); lines = "0" + lines; }
+      var yinLine = lines.charAt(0) === "0";
+      setTimeout(function () {
+        /* hexgram is column-reverse: afterbegin lands the new line at the bottom */
+        if (build) build.insertAdjacentHTML("afterbegin", '<span class="hexline' + (yinLine ? " yin" : "") + '"></span>');
+      }, reduceMotion ? 0 : 400);
       if (throws >= 6) {
         clearInterval(timer);
-        var h = findHex(lines);
-        var transformed = null;
-        if (changing.length) {
-          var t = lines.split("");
-          changing.forEach(function (pos) { t[pos - 1] = t[pos - 1] === "1" ? "0" : "1"; });
-          transformed = findHex(t.join(""));
-        }
-        var yaoNames = ["初", "二", "三", "四", "五", "上"];
-        var h3 = "<h3>" + (ZH ? "第" + h.n + "卦 · " + h.name + "（" + h.py + "）" : "Hexagram " + h.n + " · " + h.name + " (" + h.py + ") — " + h.en) + "</h3>";
-        var judgBlock = "<p style='font-size:1.15rem'><b>" + T.judgment + "：</b>" + h.judg + "</p>";
-        var tuanTxt = TUAN[h.n] || "";
-        var tuanBlock = tuanTxt ? '<blockquote class="classic" style="margin:8px 0"><span class="zh-quote">' + tuanTxt + "</span>" + (ZH ? "" : '<span style="display:block;font-size:.9rem;color:var(--ink2);margin-top:6px">The Tuan (judgment commentary) from the Ten Wings explains the hexagram name and its core dynamic.</span>') + '<cite class="cite">——《易传·彖传》</cite></blockquote>' : "";
-        var xiangTxt = XIANG[h.n] || {};
-        var xiangBlock = xiangTxt.z ? '<blockquote class="classic" style="margin:8px 0"><span class="zh-quote">「象曰：' + xiangTxt.z + '」</span>' + (ZH ? "" : '<span style="display:block;font-size:.9rem;color:var(--ink2);margin-top:6px">' + xiangTxt.e + "</span>") + '<cite class="cite">——《易传·象传》</cite></blockquote>' : "";
-        var themeBlock = "<p style='margin:10px 0'>" + (ZH ? h.theme : (h.themeEn || h.judgEn)) + "</p>";
-        var changingBlock = "";
-        if (changing.length) {
-          var yaoTexts = changing.map(function (pos) {
-            var isYang = lines[pos - 1] === "1";
-            var nm = yaoName(pos - 1, isYang);
-            var txt = (YAO[h.n] && YAO[h.n][pos - 1]) || "";
-            return "<p><b>" + nm + "：</b>" + txt + "</p>";
-          }).join("");
-          changingBlock = '<div class="panel" style="margin-top:14px;border-left:4px solid var(--verm)"><h3 style="color:var(--verm)">' + T.changingLab + "</h3>" + yaoTexts + "</div>";
-        } else {
-          changingBlock = "<p>" + T.noChanging + "</p>";
-        }
-        var transBlock = "";
-        if (transformed) {
-          transBlock = '<div class="panel" style="margin-top:10px"><h3>' + T.transLab + " · " + (ZH ? "第" + transformed.n + "卦 " + transformed.name : "Hexagram " + transformed.n + " · " + transformed.name + " (" + transformed.py + ")") + "</h3>" +
-            hexVisual(transformed.lines) +
-            '<p style="margin-top:10px"><b>' + T.judgment + "：</b>" + transformed.judg + "</p></div>";
-        }
-        out.innerHTML = '<div class="panel center">' +
-          h3 + hexVisual(h.lines) +
-          '<div style="margin-top:14px;text-align:left">' +
-          judgBlock + tuanBlock + xiangBlock + themeBlock +
-          changingBlock + transBlock +
-          "</div>" +
-          '<p style="margin-top:10px"><a class="btn small" href="' + (document.body.getAttribute("data-prefix") || "") + '/iching/hexagram-' + h.n + '/">' + T.readFull + "</a></p>" +
-          '<p class="disclaimer" style="text-align:left">' + T.tip + "</p>" +
-          '<p class="disclaimer" style="text-align:left;margin-top:4px">' + T.disc + "</p>" +
-          "</div>";
-        btn.disabled = false;
-        out.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        setTimeout(finalCast, reduceMotion ? 0 : 900);
       }
-    }, 550);
+    }, 560);
+
+    function finalCast() {
+      var h = findHex(lines);
+      var transformed = null;
+      if (changing.length) {
+        var t = lines.split("");
+        changing.forEach(function (pos) { t[pos - 1] = t[pos - 1] === "1" ? "0" : "1"; });
+        transformed = findHex(t.join(""));
+      }
+      var yaoNames = ["初", "二", "三", "四", "五", "上"];
+      var h3 = "<h3>" + (ZH ? "第" + h.n + "卦 · " + h.name + "（" + h.py + "）" : "Hexagram " + h.n + " · " + h.name + " (" + h.py + ") — " + h.en) + "</h3>";
+      var judgBlock = "<p style='font-size:1.15rem'><b>" + T.judgment + "：</b>" + h.judg + "</p>";
+      var tuanTxt = TUAN[h.n] || "";
+      var tuanBlock = tuanTxt ? '<blockquote class="classic" style="margin:8px 0"><span class="zh-quote">' + tuanTxt + "</span>" + (ZH ? "" : '<span style="display:block;font-size:.9rem;color:var(--ink2);margin-top:6px">The Tuan (judgment commentary) from the Ten Wings explains the hexagram name and its core dynamic.</span>') + '<cite class="cite">——《易传·彖传》</cite></blockquote>' : "";
+      var xiangTxt = XIANG[h.n] || {};
+      var xiangBlock = xiangTxt.z ? '<blockquote class="classic" style="margin:8px 0"><span class="zh-quote">「象曰：' + xiangTxt.z + '」</span>' + (ZH ? "" : '<span style="display:block;font-size:.9rem;color:var(--ink2);margin-top:6px">' + xiangTxt.e + "</span>") + '<cite class="cite">——《易传·象传》</cite></blockquote>' : "";
+      var themeBlock = "<p style='margin:10px 0'>" + (ZH ? h.theme : (h.themeEn || h.judgEn)) + "</p>";
+      var changingBlock = "";
+      if (changing.length) {
+        var yaoTexts = changing.map(function (pos) {
+          var isYang = lines[pos - 1] === "1";
+          var nm = yaoName(pos - 1, isYang);
+          var txt = (YAO[h.n] && YAO[h.n][pos - 1]) || "";
+          return "<p><b>" + nm + "：</b>" + txt + "</p>";
+        }).join("");
+        changingBlock = '<div class="panel" style="margin-top:14px;border-left:4px solid var(--verm)"><h3 style="color:var(--verm)">' + T.changingLab + "</h3>" + yaoTexts + "</div>";
+      } else {
+        changingBlock = "<p>" + T.noChanging + "</p>";
+      }
+      var transBlock = "";
+      if (transformed) {
+        transBlock = '<div class="panel" style="margin-top:10px"><h3>' + T.transLab + " · " + (ZH ? "第" + transformed.n + "卦 " + transformed.name : "Hexagram " + transformed.n + " · " + transformed.name + " (" + transformed.py + ")") + "</h3>" +
+          hexVisual(transformed.lines) +
+          '<p style="margin-top:10px"><b>' + T.judgment + "：</b>" + transformed.judg + "</p></div>";
+      }
+      out.innerHTML = '<div class="panel center"><span class="seal-stamp" aria-hidden="true">卦</span>' +
+        h3 + hexVisual(h.lines) +
+        '<div style="margin-top:14px;text-align:left">' +
+        judgBlock + tuanBlock + xiangBlock + themeBlock +
+        changingBlock + transBlock +
+        "</div>" +
+        '<p style="margin-top:10px"><a class="btn small" href="' + (document.body.getAttribute("data-prefix") || "") + '/iching/hexagram-' + h.n + '/">' + T.readFull + "</a></p>" +
+        '<p class="disclaimer" style="text-align:left">' + T.tip + "</p>" +
+        '<p class="disclaimer" style="text-align:left;margin-top:4px">' + T.disc + "</p>" +
+        "</div>";
+      btn.disabled = false;
+      out.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "nearest" });
+    }
   });
 })();

@@ -9,7 +9,7 @@ var LANGS = [
   { code: "ar", prefix: "/ar", htmlLang: "ar", dir: "rtl", label: "العربية", font: "Noto+Naskh+Arabic:wght@400;600;700" },
   { code: "ja", prefix: "/ja", htmlLang: "ja", dir: "ltr", label: "日本語", font: "Noto+Serif+JP:wght@400;600;700" }
 ];
-var VER = "?v=18";
+var VER = "?v=19";
 
 var JB_STAGE = '<div id="jb-stage" class="jb-stage">' +
   '<div class="jb-piece" id="jb-b1"><div class="jb-sh"></div><div class="jb-body"><div class="jb-f jb-f-flat"></div><div class="jb-f jb-f-dome"></div></div></div>' +
@@ -75,11 +75,14 @@ function header(pack, enPath) {
     var on = L.code === pack.code;
     return '<a href="' + x.path + '"' + (on ? ' class="lang-on"' : "") + ">" + L.label + "</a>";
   }).join('<span class="lang-sep">·</span>');
+  /* language switch rendered twice: inline on desktop, inside the nav drawer on mobile */
+  var swDesk = '<nav class="lang-switch lang-desk" aria-label="Language">' + sw + "</nav>";
+  var swDrawer = '<nav class="lang-switch lang-drawer" aria-label="Language">' + sw + "</nav>";
   return '<header class="site-head"><div class="container">' +
     '<a class="logo" href="' + pack.prefix + '/"><span class="seal">命</span><span class="en">BaziOracle</span><span style="opacity:.6;font-size:.85rem">' + esc(pack.brand) + "</span></a>" +
-    '<button class="nav-toggle">☰</button>' +
-    '<nav class="lang-switch">' + sw + "</nav>" +
-    '<nav class="main-nav">' + nav + "</nav>" +
+    '<button class="nav-toggle" aria-label="Menu">☰</button>' +
+    swDesk +
+    '<nav class="main-nav">' + swDrawer + nav + "</nav>" +
     "</div></header>\n";
 }
 
