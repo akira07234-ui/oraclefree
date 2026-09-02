@@ -14,13 +14,14 @@
   if (applyStatic) q.placeholder = T.searchPh;
   var list = document.getElementById("dream-list");
   var DATA = window.DREAMS_LOC || [];
+  var s2t = window.s2tConv || function (x) { return x; };  /* zh-tw pages: match traditional input against simplified data */
 
   function render() {
     var kw = (q.value || "").trim().toLowerCase();
     var html = "";
     Object.keys(T.cats).forEach(function (cat) {
       var items = DATA.filter(function (d) {
-        return d.c === cat && (!kw || d.t.toLowerCase().indexOf(kw) >= 0);
+        return d.c === cat && (!kw || s2t(d.t).toLowerCase().indexOf(s2t(kw)) >= 0);
       });
       if (!items.length) return;
       html += "<h3>" + T.cats[cat] + "</h3>" + items.map(function (d) {

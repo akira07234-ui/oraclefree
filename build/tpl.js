@@ -3,12 +3,13 @@ var SITE_URL = process.env.SITE_URL || "https://www.bazioracle.com";
 
 var LANGS = [
   { code: "en", prefix: "", htmlLang: "en", dir: "ltr", label: "English", font: "" },
-  { code: "zh", prefix: "/zh", htmlLang: "zh-CN", dir: "ltr", label: "中文", font: "" },
+  { code: "zh", prefix: "/zh", htmlLang: "zh-CN", dir: "ltr", label: "简体中文", font: "" },
+  { code: "zh-tw", prefix: "/zh-tw", htmlLang: "zh-TW", dir: "ltr", label: "繁體中文", font: "Noto+Serif+TC:wght@400;600;700" },
   { code: "es", prefix: "/es", htmlLang: "es", dir: "ltr", label: "Español", font: "" },
   { code: "ar", prefix: "/ar", htmlLang: "ar", dir: "rtl", label: "العربية", font: "Noto+Naskh+Arabic:wght@400;600;700" },
   { code: "ja", prefix: "/ja", htmlLang: "ja", dir: "ltr", label: "日本語", font: "Noto+Serif+JP:wght@400;600;700" }
 ];
-var VER = "?v=17";
+var VER = "?v=18";
 
 var JB_STAGE = '<div id="jb-stage" class="jb-stage">' +
   '<div class="jb-piece" id="jb-b1"><div class="jb-sh"></div><div class="jb-body"><div class="jb-f jb-f-flat"></div><div class="jb-f jb-f-dome"></div></div></div>' +
@@ -122,7 +123,8 @@ function page(pack, o) {
   if (o.crumbs) body += breadcrumb(o.crumbs);
   body += o.body;
   body += footer(pack);
-  body += (o.scripts || "") + '\n<script src="/assets/js/main.js' + VER + '"></script>\n</body>\n</html>';
+  var pre = pack.code === "zh-tw" ? '<script src="/assets/js/s2t.js' + VER + '"></script>\n' : "";
+  body += pre + (o.scripts || "") + '\n<script src="/assets/js/main.js' + VER + '"></script>\n</body>\n</html>';
   var lds = [];
   if (o.crumbs && o.crumbs.length > 1) lds.push(crumbLd(o.crumbs));
   var ep = o.enPath || "/";

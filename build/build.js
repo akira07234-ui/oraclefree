@@ -14,6 +14,20 @@ var zodiac = require("./data/zodiac");
 var dreams = require("./data/dreams");
 var zhTools = require("./lang/zh-tools");
 
+/* ---------- Simplified→Traditional (zh-tw variant reuses zh content) ---------- */
+var OpenCC = require("opencc-js");
+var s2t = OpenCC.Converter({ from: "cn", to: "twp" });
+function s2tHtml(html) {
+  var out = s2t(String(html));
+  /* body builders hardcode /zh/ links; rewrite all, then restore the two links
+     that must keep pointing at the simplified variant (hreflang zh + switcher) */
+  out = out.split("/zh/").join("/zh-tw/");
+  out = out.split('"/zh"').join('"/zh-tw"');
+  out = out.split('hreflang="zh" href="' + tpl.SITE_URL + '/zh-tw/').join('hreflang="zh" href="' + tpl.SITE_URL + '/zh/');
+  out = out.replace(/<a href="\/zh-tw([^"]*)">簡體中文<\/a>/g, '<a href="/zh$1">簡體中文</a>');
+  return out;
+}
+
 var PACKS = { es: require("./lang/es"), ar: require("./lang/ar"), ja: require("./lang/ja") };
 var READINGS = require("./lang/readings");
 var DEEP = require("./lang/deep");
@@ -59,6 +73,15 @@ write(path.join("assets", "data", "tuan.json"), JSON.stringify(TUAN));
 write(path.join("assets", "data", "yao.json"), JSON.stringify(YAO));
 write(path.join("assets", "data", "xiang.json"), JSON.stringify(XIANG));
 
+/* ---------- runtime s2t char map for /zh-tw/ client-side text ---------- */
+var S2T_RUNTIME = fs.readFileSync(path.join(__dirname, "s2t-runtime.js"), "utf8");
+var s2tMap = {};
+for (var cp = 0x3400; cp <= 0x9FFF; cp++) {
+  var ch = String.fromCharCode(cp), tc = s2t(ch);
+  if (tc.length === 1 && tc !== ch) s2tMap[ch] = tc;
+}
+write(path.join("assets", "js", "s2t.js"), S2T_RUNTIME.replace("/*__MAP__*/", JSON.stringify(s2tMap)));
+
 /* ---------- favicon ---------- */
 write(path.join("assets", "img", "favicon.svg"),
   '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="12" fill="#b23a2e"/><text x="32" y="44" font-size="36" text-anchor="middle" fill="#fff" font-family="serif" font-weight="bold">命</text></svg>');
@@ -98,6 +121,11 @@ function emitLegacy(lang) {
     var rel = enPath === "/" ? "index.html" : (Z ? "zh/" : "") + enPath.replace(/^\//, "") + "index.html";
     if (enPath === "/" && Z) rel = "zh/index.html";
     write(rel, html);
+    if (Z) {
+      var twPack = { code: "zh-tw", prefix: "/zh-tw", brand: pack.brand, nav: pack.nav, foot: pack.foot };
+      var twRel = enPath === "/" ? "zh-tw/index.html" : "zh-tw/" + enPath.replace(/^\//, "") + "index.html";
+      write(twRel, s2tHtml(tpl.page(twPack, Object.assign({ enPath: enPath }, def))));
+    }
     mark(enPath, pr, cf);
   }
 
@@ -167,7 +195,12 @@ function notFound(html, rel) { write(rel, html); }
   var nav = Z ? [["/zh/", "八字排盘"], ["/zh/ziwei/", "紫微斗数"], ["/zh/jiaobei/", "在线掷筊"], ["/zh/kau-cim/", "观音灵签"], ["/zh/zodiac/", "生肖配对"], ["/zh/iching/", "易经六十四卦"], ["/zh/almanac/", "每日黄历"], ["/zh/five-elements/", "五行查询"], ["/zh/dreams/", "周公解梦"], ["/zh/learn/", "命理课堂"]] : [["/", "BaZi"], ["/ziwei/", "Zi Wei"], ["/jiaobei/", "Moon Blocks"], ["/kau-cim/", "Fortune Sticks"], ["/zodiac/", "Zodiac"], ["/iching/", "I Ching"], ["/almanac/", "Almanac"], ["/five-elements/", "Five Elements"], ["/dreams/", "Dreams"], ["/learn/", "Learn"]];
   var foot = Z ? { blurb: "免费的中文命理工具站。", toolsTitle: "工具", learnTitle: "了解更多", learnLabel: "命理课堂", aboutLabel: "关于本站", privacyLabel: "隐私政策", tools: [], legal: "" } : { blurb: "Free Chinese fortune-telling tools.", toolsTitle: "Tools", learnTitle: "Learn", learnLabel: "Guides", aboutLabel: "About", privacyLabel: "Privacy", tools: [], legal: "" };
   var pack = { code: Z ? "zh" : "en", prefix: Z ? "/zh" : "", brand: Z ? "八字神谕" : "Chinese Oracle", nav: nav, foot: foot };
-  write(pre + "404.html", tpl.page(pack, { enPath: "/404.html", title: Z ? "404 | 八字神谕" : "404 | BaziOracle", desc: "404", body: body }));
+  var html404 = tpl.page(pack, { enPath: "/404.html", title: Z ? "404 | 八字神谕" : "404 | BaziOracle", desc: "404", body: body });
+  write(pre + "404.html", html404);
+  if (Z) {
+    var twPack = { code: "zh-tw", prefix: "/zh-tw", brand: pack.brand, nav: nav, foot: foot };
+    write("zh-tw/404.html", s2tHtml(tpl.page(twPack, { enPath: "/404.html", title: "404 | 八字神谕", desc: "404", body: body })));
+  }
 });
 Object.keys(PACKS).forEach(function (code) {
   var P = PACKS[code];

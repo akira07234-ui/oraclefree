@@ -1,0 +1,11 @@
+{
+  "name": "bazioracle-build",
+  "private": true,
+  "description": "Static site generator (en/zh/zh-tw/es/ar/ja). Build: cd build && node build.js",
+  "scripts": {
+    "build": "node build/build.js"
+  },
+  "dependencies": {
+    "opencc-js": "^1.0.5"
+  }
+}
