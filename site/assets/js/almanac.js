@@ -17,7 +17,7 @@
   };
   var TERMS = window.ALM_TERMS || {};
   var lang = document.documentElement.lang.split("-")[0] || "en";
-  var terms = TERMS[lang] ? TERMS[lang].terms : TERMS.en ? TERMS.en.terms : {};
+  var terms = (TERMS[lang] && TERMS[lang].terms) || (TERMS.en && TERMS.en.terms) || {};
 
   function termTrans(term) { return terms[term] || ""; }
 
